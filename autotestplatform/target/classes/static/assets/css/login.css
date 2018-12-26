@@ -1,0 +1,23 @@
+body{background: url(../img/login.jpg) no-repeat;font-size: 16px; overflow: hidden; position: relative; width: 100%;}
+body{margin:0px; padding:0px;}
+.form{background: rgba(0,0,0,0.5);width:420px;margin:100px auto; border-radius:5px; }
+.form-horizontal{margin:50px auto;}
+button.btn.btn-info.btn-block {width: 200px;}
+#inputPassword{padding:10px 0px;}
+.form-group>label{color:#ffffff;font-size:14px;}
+.form-group input{background: rgba(0,0,0,0.4);border:none;}
+.logo {  font-size: 20px; color:#f7f7f7;padding:20px 10px;}
+.container.footer{margin-top: 200px;}
+.container.footer p{font-size: 16px; color:#f7f7f7;text-align: center;}
+.left-menu{background-color:#31b0d5;}
+
+
+
+
+
+
+
+
+
+
+
