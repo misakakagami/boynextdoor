@@ -1,0 +1,361 @@
+[2018-05-17 12:48:36,646] [INFO] *****************start insert test data*****************
+[2018-05-17 12:48:36,713] [INFO] *****************insert test data finish*****************
+[2018-05-17 12:48:36,790] [INFO] *****************start case TrueCase_001************************
+[2018-05-17 12:48:36,825] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:36,825] [INFO] 测试点：所有信息输入正确
+[2018-05-17 12:48:36,825] [INFO] ===start request===
+[2018-05-17 12:48:36,825] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": "2123456789012345678", "prtNo": "1320180000001000", "contNo": "00000300", "status": "1", "appntCode": "80000000020000", "appntName": "巴麻美", "insuredName": "自来也", "startDate": "1980-01-01", "endDate": "2028-01-01", "saleModeList": [{"saleMode": "2"}], "subSaleModeList": [{"subSaleMode": "M"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:36,829] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:36,866] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:36,873] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:36,873] [INFO]  ===end request===
+[2018-05-17 12:48:36,876] [INFO] pyResult:()
+[2018-05-17 12:48:36,876] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:36,899] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:36,899] [INFO] ****************case TrueCase_001 success****************
+[2018-05-17 12:48:36,900] [INFO] 本场景测试通过！
+[2018-05-17 12:48:36,900] [INFO] ****************case TrueCase_001 success****************
+
+[2018-05-17 12:48:36,900] [INFO] *****************start case TrueCase_002************************
+[2018-05-17 12:48:36,949] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:36,949] [INFO] 测试点：只传必须项
+[2018-05-17 12:48:36,949] [INFO] ===start request===
+[2018-05-17 12:48:36,949] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:36,951] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:37,859] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:37,864] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"117101526450214721","prtNo":"1316680000434585","contNo":"1316680000434585","status":"0","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"0.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:05:17.0","saleMode":"mobile","subSaleMode":null},{"orderNo":"115731526450384708","prtNo":"1316680000434586","contNo":"1316680000434586","status":"3","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:08:06.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"114441526450393230","prtNo":"1316680000434587","contNo":"1316680000434587","status":"3","mainRiskName":"百年顺达综合意外伤害保险","sumPrem":"260.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:08:15.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"116211526450400769","prtNo":"1316680000434588","contNo":"1316680000434588","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 14:08:22.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"113571526450402076","prtNo":"1316680000434589","contNo":"1316680000434589","status":"3","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:08:24.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"115801526450403194","prtNo":"1316680000434590","contNo":"1316680000434590","status":"2","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:08:25.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"114481526450411489","prtNo":"1316680000434591","contNo":"1316680000434591","status":"3","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:08:33.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117521526450417484","prtNo":"1316680000434592","contNo":"1316680000434592","status":"3","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:09:32.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117191526450479059","prtNo":"1316680000434593","contNo":"1316680000434593","status":"3","mainRiskName":"鑫时代年金保险（分红型）","sumPrem":"30200.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:09:41.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117671526450486677","prtNo":"1316680000434594","contNo":"1316680000434594","status":"3","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:09:48.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:37,864] [INFO]  ===end request===
+[2018-05-17 12:48:38,609] [INFO] pyResult:(('117101526450214721', '1316680000434585', '1316680000434585', '0', 'mobile', None, '百年安康一生终身重大疾病保险', Decimal('0.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 5, 17)), ('115731526450384708', '1316680000434586', '1316680000434586', '3', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 6)), ('114441526450393230', '1316680000434587', '1316680000434587', '3', '2', 'M', '百年顺达综合意外伤害保险', Decimal('260.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 15)), ('116211526450400769', '1316680000434588', '1316680000434588', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 22)), ('113571526450402076', '1316680000434589', '1316680000434589', '3', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 24)), ('115801526450403194', '1316680000434590', '1316680000434590', '2', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 25)), ('114481526450411489', '1316680000434591', '1316680000434591', '3', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 33)), ('117521526450417484', '1316680000434592', '1316680000434592', '3', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 9, 32)), ('117191526450479059', '1316680000434593', '1316680000434593', '3', '2', 'M', '鑫时代年金保险（分红型）', Decimal('30200.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 9, 41)), ('117671526450486677', '1316680000434594', '1316680000434594', '3', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 9, 48)))
+[2018-05-17 12:48:38,609] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:38,628] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:38,628] [INFO] ****************case TrueCase_002 success****************
+[2018-05-17 12:48:38,629] [INFO] 本场景测试通过！
+[2018-05-17 12:48:38,629] [INFO] ****************case TrueCase_002 success****************
+
+[2018-05-17 12:48:38,629] [INFO] *****************start case TrueCase_003************************
+[2018-05-17 12:48:38,648] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:38,648] [INFO] 测试点：投保单号不存在
+[2018-05-17 12:48:38,648] [INFO] ===start request===
+[2018-05-17 12:48:38,648] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": "2222", "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:38,650] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:38,686] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:38,688] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:38,688] [INFO]  ===end request===
+[2018-05-17 12:48:38,690] [INFO] pyResult:()
+[2018-05-17 12:48:38,690] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:38,703] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:38,703] [INFO] ****************case TrueCase_003 success****************
+[2018-05-17 12:48:38,703] [INFO] 本场景测试通过！
+[2018-05-17 12:48:38,703] [INFO] ****************case TrueCase_003 success****************
+
+[2018-05-17 12:48:38,704] [INFO] *****************start case TrueCase_004************************
+[2018-05-17 12:48:38,728] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:38,728] [INFO] 测试点：状态0
+[2018-05-17 12:48:38,728] [INFO] ===start request===
+[2018-05-17 12:48:38,728] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:38,730] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:39,697] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:39,703] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"117101526450214721","prtNo":"1316680000434585","contNo":"1316680000434585","status":"0","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"0.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:05:17.0","saleMode":"mobile","subSaleMode":null},{"orderNo":"114071526453559095","prtNo":"1316680000434668","contNo":"1316680000434668","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"119761526453559471","prtNo":"1316680000434670","contNo":"1316680000434670","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051614525436","prtNo":"1316680000434671","contNo":"1316680000434671","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:02.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117611526454131668","prtNo":"1316680000434702","contNo":"1316680000434702","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118221526454170415","prtNo":"1316680000434704","contNo":"1316680000434704","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615030470","prtNo":"1316680000434705","contNo":"1316680000434705","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:13.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111111526454256286","prtNo":"1316680000434707","contNo":"1316680000434707","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118211526454256619","prtNo":"1316680000434709","contNo":"1316680000434709","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615043057","prtNo":"1316680000434710","contNo":"1316680000434710","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:39.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:39,703] [INFO]  ===end request===
+[2018-05-17 12:48:40,452] [INFO] pyResult:(('117101526450214721', '1316680000434585', '1316680000434585', '0', 'mobile', None, '百年安康一生终身重大疾病保险', Decimal('0.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 5, 17)), ('114071526453559095', '1316680000434668', '1316680000434668', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('119761526453559471', '1316680000434670', '1316680000434670', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('2018051614525436', '1316680000434671', '1316680000434671', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 2)), ('117611526454131668', '1316680000434702', '1316680000434702', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('118221526454170415', '1316680000434704', '1316680000434704', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('2018051615030470', '1316680000434705', '1316680000434705', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 13)), ('111111526454256286', '1316680000434707', '1316680000434707', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('118211526454256619', '1316680000434709', '1316680000434709', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('2018051615043057', '1316680000434710', '1316680000434710', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 39)))
+[2018-05-17 12:48:40,452] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:40,470] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:40,470] [INFO] ****************case TrueCase_004 success****************
+[2018-05-17 12:48:40,470] [INFO] 本场景测试通过！
+[2018-05-17 12:48:40,470] [INFO] ****************case TrueCase_004 success****************
+
+[2018-05-17 12:48:40,470] [INFO] *****************start case TrueCase_005************************
+[2018-05-17 12:48:40,490] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:40,490] [INFO] 测试点：状态1
+[2018-05-17 12:48:40,490] [INFO] ===start request===
+[2018-05-17 12:48:40,490] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "1", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:40,491] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:41,237] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:41,238] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"116211526450400769","prtNo":"1316680000434588","contNo":"1316680000434588","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 14:08:22.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"116391526450783632","prtNo":"1316680000434600","contNo":"1316680000434600","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 14:14:45.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"115581526452131482","prtNo":"1316680000434612","contNo":"1316680000434612","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 14:37:13.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"115291526452749641","prtNo":"1316680000434625","contNo":"1316680000434625","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 14:47:31.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"112201526453208418","prtNo":"1316680000434636","contNo":"1316680000434636","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 14:55:10.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117511526453565655","prtNo":"1316680000434672","contNo":"1316680000434672","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 15:01:07.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"113321526453788404","prtNo":"1316680000434682","contNo":"1316680000434682","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"4760.00","appntName":"山二","appntMobile":"18825681269","insuredName":"山二","modifyDate":"2018-05-16 15:04:50.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118911526457038708","prtNo":"1316680000434766","contNo":"1316680000434766","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 15:59:00.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111891526458501943","prtNo":"1316680000434801","contNo":"1316680000434801","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 16:23:23.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"114421526459605094","prtNo":"1316680000434846","contNo":"1316680000434846","status":"1","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"8230.00","appntName":"中台III","appntMobile":"13133256546","insuredName":"中台III","modifyDate":"2018-05-16 16:41:47.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:41,239] [INFO]  ===end request===
+[2018-05-17 12:48:42,313] [INFO] pyResult:(('116211526450400769', '1316680000434588', '1316680000434588', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 22)), ('116391526450783632', '1316680000434600', '1316680000434600', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 14, 14, 45)), ('115581526452131482', '1316680000434612', '1316680000434612', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 14, 37, 13)), ('115291526452749641', '1316680000434625', '1316680000434625', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 14, 47, 31)), ('112201526453208418', '1316680000434636', '1316680000434636', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 14, 55, 10)), ('117511526453565655', '1316680000434672', '1316680000434672', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 15, 1, 7)), ('113321526453788404', '1316680000434682', '1316680000434682', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('4760.00'), '山二', '18825681269', '山二', datetime.datetime(2018, 5, 16, 15, 4, 50)), ('118911526457038708', '1316680000434766', '1316680000434766', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 15, 59)), ('111891526458501943', '1316680000434801', '1316680000434801', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 16, 23, 23)), ('114421526459605094', '1316680000434846', '1316680000434846', '1', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('8230.00'), '中台III', '13133256546', '中台III', datetime.datetime(2018, 5, 16, 16, 41, 47)))
+[2018-05-17 12:48:42,314] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:42,335] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:42,335] [INFO] ****************case TrueCase_005 success****************
+[2018-05-17 12:48:42,335] [INFO] 本场景测试通过！
+[2018-05-17 12:48:42,335] [INFO] ****************case TrueCase_005 success****************
+
+[2018-05-17 12:48:42,335] [INFO] *****************start case TrueCase_006************************
+[2018-05-17 12:48:42,371] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:42,371] [INFO] 测试点：状态10
+[2018-05-17 12:48:42,371] [INFO] ===start request===
+[2018-05-17 12:48:42,371] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "10", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:42,372] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:43,174] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:43,176] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:43,176] [INFO]  ===end request===
+[2018-05-17 12:48:43,905] [INFO] pyResult:()
+[2018-05-17 12:48:43,905] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:43,921] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:43,921] [INFO] ****************case TrueCase_006 success****************
+[2018-05-17 12:48:43,921] [INFO] 本场景测试通过！
+[2018-05-17 12:48:43,921] [INFO] ****************case TrueCase_006 success****************
+
+[2018-05-17 12:48:43,922] [INFO] *****************start case TrueCase_009************************
+[2018-05-17 12:48:43,937] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:43,938] [INFO] 测试点：分页测试(1/1)
+[2018-05-17 12:48:43,938] [INFO] ===start request===
+[2018-05-17 12:48:43,938] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "1"}
+[2018-05-17 12:48:43,939] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:44,723] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:44,724] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"117101526450214721","prtNo":"1316680000434585","contNo":"1316680000434585","status":"0","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"0.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:05:17.0","saleMode":"mobile","subSaleMode":null}]}}
+[2018-05-17 12:48:44,725] [INFO]  ===end request===
+[2018-05-17 12:48:45,448] [INFO] pyResult:(('117101526450214721', '1316680000434585', '1316680000434585', '0', 'mobile', None, '百年安康一生终身重大疾病保险', Decimal('0.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 5, 17)),)
+[2018-05-17 12:48:45,449] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:45,464] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:45,464] [INFO] ****************case TrueCase_009 success****************
+[2018-05-17 12:48:45,464] [INFO] 本场景测试通过！
+[2018-05-17 12:48:45,464] [INFO] ****************case TrueCase_009 success****************
+
+[2018-05-17 12:48:45,464] [INFO] *****************start case TrueCase_010************************
+[2018-05-17 12:48:45,485] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:45,485] [INFO] 测试点：分页测试(2/1)
+[2018-05-17 12:48:45,485] [INFO] ===start request===
+[2018-05-17 12:48:45,485] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "2", "pageShowNum": "1"}
+[2018-05-17 12:48:45,486] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:46,403] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:46,410] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"115731526450384708","prtNo":"1316680000434586","contNo":"1316680000434586","status":"3","mainRiskName":"百年安康一生终身重大疾病保险","sumPrem":"3510.00","appntName":"中台III","appntMobile":"13133256548","insuredName":"中台III","modifyDate":"2018-05-16 14:08:06.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:46,410] [INFO]  ===end request===
+[2018-05-17 12:48:47,174] [INFO] pyResult:(('115731526450384708', '1316680000434586', '1316680000434586', '3', '2', 'M', '百年安康一生终身重大疾病保险', Decimal('3510.00'), '中台III', '13133256548', '中台III', datetime.datetime(2018, 5, 16, 14, 8, 6)),)
+[2018-05-17 12:48:47,174] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:47,188] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:47,188] [INFO] ****************case TrueCase_010 success****************
+[2018-05-17 12:48:47,188] [INFO] 本场景测试通过！
+[2018-05-17 12:48:47,188] [INFO] ****************case TrueCase_010 success****************
+
+[2018-05-17 12:48:47,188] [INFO] *****************start case TrueCase_011************************
+[2018-05-17 12:48:47,206] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:47,206] [INFO] 测试点：销售方式1传统手工出单
+[2018-05-17 12:48:47,207] [INFO] ===start request===
+[2018-05-17 12:48:47,207] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "saleModeList": [{"saleMode": "1"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:47,208] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:48,313] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:48,314] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:48,315] [INFO]  ===end request===
+[2018-05-17 12:48:49,202] [INFO] pyResult:()
+[2018-05-17 12:48:49,202] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:49,217] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:49,217] [INFO] ****************case TrueCase_011 success****************
+[2018-05-17 12:48:49,217] [INFO] 本场景测试通过！
+[2018-05-17 12:48:49,217] [INFO] ****************case TrueCase_011 success****************
+
+[2018-05-17 12:48:49,217] [INFO] *****************start case TrueCase_012************************
+[2018-05-17 12:48:49,234] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:49,234] [INFO] 测试点：销售方式2移动展业出单；销售子渠道M手机
+[2018-05-17 12:48:49,234] [INFO] ===start request===
+[2018-05-17 12:48:49,234] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "saleModeList": [{"saleMode": "2"}], "subSaleModeList": [{"subSaleMode": "M"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:49,236] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:50,234] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:50,235] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"114071526453559095","prtNo":"1316680000434668","contNo":"1316680000434668","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"119761526453559471","prtNo":"1316680000434670","contNo":"1316680000434670","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051614525436","prtNo":"1316680000434671","contNo":"1316680000434671","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:02.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117611526454131668","prtNo":"1316680000434702","contNo":"1316680000434702","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118221526454170415","prtNo":"1316680000434704","contNo":"1316680000434704","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615030470","prtNo":"1316680000434705","contNo":"1316680000434705","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:13.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111111526454256286","prtNo":"1316680000434707","contNo":"1316680000434707","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118211526454256619","prtNo":"1316680000434709","contNo":"1316680000434709","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615043057","prtNo":"1316680000434710","contNo":"1316680000434710","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:39.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111351526454527691","prtNo":"1316680000434712","contNo":"1316680000434712","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:17:09.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:50,236] [INFO]  ===end request===
+[2018-05-17 12:48:51,081] [INFO] pyResult:(('114071526453559095', '1316680000434668', '1316680000434668', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('119761526453559471', '1316680000434670', '1316680000434670', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('2018051614525436', '1316680000434671', '1316680000434671', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 2)), ('117611526454131668', '1316680000434702', '1316680000434702', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('118221526454170415', '1316680000434704', '1316680000434704', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('2018051615030470', '1316680000434705', '1316680000434705', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 13)), ('111111526454256286', '1316680000434707', '1316680000434707', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('118211526454256619', '1316680000434709', '1316680000434709', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('2018051615043057', '1316680000434710', '1316680000434710', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 39)), ('111351526454527691', '1316680000434712', '1316680000434712', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 17, 9)))
+[2018-05-17 12:48:51,081] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:51,100] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:51,100] [INFO] ****************case TrueCase_012 success****************
+[2018-05-17 12:48:51,100] [INFO] 本场景测试通过！
+[2018-05-17 12:48:51,100] [INFO] ****************case TrueCase_012 success****************
+
+[2018-05-17 12:48:51,100] [INFO] *****************start case TrueCase_013************************
+[2018-05-17 12:48:51,118] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:51,119] [INFO] 测试点：销售子渠道M手机
+[2018-05-17 12:48:51,119] [INFO] ===start request===
+[2018-05-17 12:48:51,119] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "subSaleModeList": [{"subSaleMode": "M"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:51,120] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:51,883] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:51,885] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"114071526453559095","prtNo":"1316680000434668","contNo":"1316680000434668","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"119761526453559471","prtNo":"1316680000434670","contNo":"1316680000434670","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051614525436","prtNo":"1316680000434671","contNo":"1316680000434671","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:02.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117611526454131668","prtNo":"1316680000434702","contNo":"1316680000434702","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118221526454170415","prtNo":"1316680000434704","contNo":"1316680000434704","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615030470","prtNo":"1316680000434705","contNo":"1316680000434705","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:13.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111111526454256286","prtNo":"1316680000434707","contNo":"1316680000434707","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118211526454256619","prtNo":"1316680000434709","contNo":"1316680000434709","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615043057","prtNo":"1316680000434710","contNo":"1316680000434710","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:39.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111351526454527691","prtNo":"1316680000434712","contNo":"1316680000434712","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:17:09.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:51,885] [INFO]  ===end request===
+[2018-05-17 12:48:52,619] [INFO] pyResult:(('114071526453559095', '1316680000434668', '1316680000434668', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('119761526453559471', '1316680000434670', '1316680000434670', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('2018051614525436', '1316680000434671', '1316680000434671', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 2)), ('117611526454131668', '1316680000434702', '1316680000434702', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('118221526454170415', '1316680000434704', '1316680000434704', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('2018051615030470', '1316680000434705', '1316680000434705', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 13)), ('111111526454256286', '1316680000434707', '1316680000434707', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('118211526454256619', '1316680000434709', '1316680000434709', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('2018051615043057', '1316680000434710', '1316680000434710', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 39)), ('111351526454527691', '1316680000434712', '1316680000434712', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 17, 9)))
+[2018-05-17 12:48:52,619] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:52,640] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:52,640] [INFO] ****************case TrueCase_013 success****************
+[2018-05-17 12:48:52,640] [INFO] 本场景测试通过！
+[2018-05-17 12:48:52,641] [INFO] ****************case TrueCase_013 success****************
+
+[2018-05-17 12:48:52,641] [INFO] *****************start case TrueCase_014************************
+[2018-05-17 12:48:52,658] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:52,658] [INFO] 测试点：销售方式6网络出单；销售子渠道Wweb版
+[2018-05-17 12:48:52,658] [INFO] ===start request===
+[2018-05-17 12:48:52,658] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "saleModeList": [{"saleMode": "6"}], "subSaleModeList": [{"subSaleMode": "W"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:52,659] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:53,421] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:53,424] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:53,424] [INFO]  ===end request===
+[2018-05-17 12:48:54,152] [INFO] pyResult:()
+[2018-05-17 12:48:54,152] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:54,168] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:54,168] [INFO] ****************case TrueCase_014 success****************
+[2018-05-17 12:48:54,169] [INFO] 本场景测试通过！
+[2018-05-17 12:48:54,169] [INFO] ****************case TrueCase_014 success****************
+
+[2018-05-17 12:48:54,169] [INFO] *****************start case TrueCase_015************************
+[2018-05-17 12:48:54,185] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:54,185] [INFO] 测试点：销售方式2,5移动展业出单，自助机出单
+[2018-05-17 12:48:54,185] [INFO] ===start request===
+[2018-05-17 12:48:54,186] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "saleModeList": [{"saleMode": "2"}, {"saleMode": "6"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:54,187] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:54,938] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:54,943] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"114071526453559095","prtNo":"1316680000434668","contNo":"1316680000434668","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"119761526453559471","prtNo":"1316680000434670","contNo":"1316680000434670","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051614525436","prtNo":"1316680000434671","contNo":"1316680000434671","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:02.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117611526454131668","prtNo":"1316680000434702","contNo":"1316680000434702","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118221526454170415","prtNo":"1316680000434704","contNo":"1316680000434704","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615030470","prtNo":"1316680000434705","contNo":"1316680000434705","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:13.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111111526454256286","prtNo":"1316680000434707","contNo":"1316680000434707","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118211526454256619","prtNo":"1316680000434709","contNo":"1316680000434709","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615043057","prtNo":"1316680000434710","contNo":"1316680000434710","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:39.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111351526454527691","prtNo":"1316680000434712","contNo":"1316680000434712","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:17:09.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:54,943] [INFO]  ===end request===
+[2018-05-17 12:48:55,718] [INFO] pyResult:(('114071526453559095', '1316680000434668', '1316680000434668', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('119761526453559471', '1316680000434670', '1316680000434670', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('2018051614525436', '1316680000434671', '1316680000434671', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 2)), ('117611526454131668', '1316680000434702', '1316680000434702', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('118221526454170415', '1316680000434704', '1316680000434704', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('2018051615030470', '1316680000434705', '1316680000434705', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 13)), ('111111526454256286', '1316680000434707', '1316680000434707', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('118211526454256619', '1316680000434709', '1316680000434709', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('2018051615043057', '1316680000434710', '1316680000434710', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 39)), ('111351526454527691', '1316680000434712', '1316680000434712', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 17, 9)))
+[2018-05-17 12:48:55,718] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:55,741] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:55,741] [INFO] ****************case TrueCase_015 success****************
+[2018-05-17 12:48:55,741] [INFO] 本场景测试通过！
+[2018-05-17 12:48:55,741] [INFO] ****************case TrueCase_015 success****************
+
+[2018-05-17 12:48:55,741] [INFO] *****************start case TrueCase_016************************
+[2018-05-17 12:48:55,760] [INFO] *****************insert test data***********************
+[2018-05-17 12:48:55,760] [INFO] 测试点：销售模式W:web版本，M手机
+[2018-05-17 12:48:55,760] [INFO] ===start request===
+[2018-05-17 12:48:55,760] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "0", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "subSaleModeList": [{"subSaleMode": "W"}, {"subSaleMode": "M"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:55,762] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:56,526] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:56,533] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[{"orderNo":"114071526453559095","prtNo":"1316680000434668","contNo":"1316680000434668","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"119761526453559471","prtNo":"1316680000434670","contNo":"1316680000434670","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:01.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051614525436","prtNo":"1316680000434671","contNo":"1316680000434671","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:01:02.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"117611526454131668","prtNo":"1316680000434702","contNo":"1316680000434702","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118221526454170415","prtNo":"1316680000434704","contNo":"1316680000434704","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:12.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615030470","prtNo":"1316680000434705","contNo":"1316680000434705","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:11:13.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111111526454256286","prtNo":"1316680000434707","contNo":"1316680000434707","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"118211526454256619","prtNo":"1316680000434709","contNo":"1316680000434709","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:38.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"2018051615043057","prtNo":"1316680000434710","contNo":"1316680000434710","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:12:39.0","saleMode":"2","subSaleMode":"M"},{"orderNo":"111351526454527691","prtNo":"1316680000434712","contNo":"1316680000434712","status":"0","mainRiskName":"百年祥瑞终身寿险（分红型）","sumPrem":"0.00","appntName":"ws","appntMobile":"15600027603","insuredName":"ws","modifyDate":"2018-05-16 15:17:09.0","saleMode":"2","subSaleMode":"M"}]}}
+[2018-05-17 12:48:56,533] [INFO]  ===end request===
+[2018-05-17 12:48:57,265] [INFO] pyResult:(('114071526453559095', '1316680000434668', '1316680000434668', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('119761526453559471', '1316680000434670', '1316680000434670', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 1)), ('2018051614525436', '1316680000434671', '1316680000434671', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 1, 2)), ('117611526454131668', '1316680000434702', '1316680000434702', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('118221526454170415', '1316680000434704', '1316680000434704', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 12)), ('2018051615030470', '1316680000434705', '1316680000434705', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 11, 13)), ('111111526454256286', '1316680000434707', '1316680000434707', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('118211526454256619', '1316680000434709', '1316680000434709', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 38)), ('2018051615043057', '1316680000434710', '1316680000434710', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 12, 39)), ('111351526454527691', '1316680000434712', '1316680000434712', '0', '2', 'M', '百年祥瑞终身寿险（分红型）', Decimal('0.00'), 'ws', '15600027603', 'ws', datetime.datetime(2018, 5, 16, 15, 17, 9)))
+[2018-05-17 12:48:57,265] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:57,287] [INFO] *****************delete test data finish****************
+[2018-05-17 12:48:57,287] [INFO] ****************case TrueCase_016 success****************
+[2018-05-17 12:48:57,287] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,287] [INFO] ****************case TrueCase_016 success****************
+
+[2018-05-17 12:48:57,312] [INFO] *****************start case FalseCase_001************************
+[2018-05-17 12:48:57,312] [INFO] 测试点：用户编码不能为空
+[2018-05-17 12:48:57,312] [INFO] ===start request===
+[2018-05-17 12:48:57,313] [INFO] POST, /contract/getpolicylist, {"userCode": null, "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:57,314] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,330] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,332] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"客户编号不能为空！"}
+[2018-05-17 12:48:57,332] [INFO]  ===end request===
+[2018-05-17 12:48:57,332] [INFO] validator_error,返回错误,客户编号不能为空！
+[2018-05-17 12:48:57,332] [INFO] ****************case FalseCase_001 success****************
+[2018-05-17 12:48:57,332] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,332] [INFO] ****************case FalseCase_001 success****************
+
+[2018-05-17 12:48:57,332] [INFO] *****************start case FalseCase_009************************
+[2018-05-17 12:48:57,332] [INFO] 测试点：页码不能为空
+[2018-05-17 12:48:57,332] [INFO] ===start request===
+[2018-05-17 12:48:57,332] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": null, "pageShowNum": "10"}
+[2018-05-17 12:48:57,334] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,356] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,361] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"page不能为空"}
+[2018-05-17 12:48:57,361] [INFO]  ===end request===
+[2018-05-17 12:48:57,361] [INFO] validator_error,返回错误,page不能为空
+[2018-05-17 12:48:57,361] [INFO] ****************case FalseCase_009 success****************
+[2018-05-17 12:48:57,361] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,361] [INFO] ****************case FalseCase_009 success****************
+
+[2018-05-17 12:48:57,361] [INFO] *****************start case FalseCase_010************************
+[2018-05-17 12:48:57,361] [INFO] 测试点：分页量不能为空
+[2018-05-17 12:48:57,361] [INFO] ===start request===
+[2018-05-17 12:48:57,361] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": null}
+[2018-05-17 12:48:57,363] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,376] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,379] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"pageShowNum不能为空"}
+[2018-05-17 12:48:57,379] [INFO]  ===end request===
+[2018-05-17 12:48:57,379] [INFO] validator_error,返回错误,pageShowNum不能为空
+[2018-05-17 12:48:57,379] [INFO] ****************case FalseCase_010 success****************
+[2018-05-17 12:48:57,379] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,379] [INFO] ****************case FalseCase_010 success****************
+
+[2018-05-17 12:48:57,379] [INFO] *****************start case FalseCase_011************************
+[2018-05-17 12:48:57,379] [INFO] 测试点：页码为负数
+[2018-05-17 12:48:57,380] [INFO] ===start request===
+[2018-05-17 12:48:57,380] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "-1", "pageShowNum": "10"}
+[2018-05-17 12:48:57,381] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,407] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,409] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"不合法的page参数！"}
+[2018-05-17 12:48:57,409] [INFO]  ===end request===
+[2018-05-17 12:48:57,409] [INFO] validator_error,返回错误,不合法的page参数！
+[2018-05-17 12:48:57,409] [INFO] ****************case FalseCase_011 success****************
+[2018-05-17 12:48:57,409] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,409] [INFO] ****************case FalseCase_011 success****************
+
+[2018-05-17 12:48:57,409] [INFO] *****************start case FalseCase_012************************
+[2018-05-17 12:48:57,409] [INFO] 测试点：分页量为负数
+[2018-05-17 12:48:57,409] [INFO] ===start request===
+[2018-05-17 12:48:57,410] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "-10"}
+[2018-05-17 12:48:57,411] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,432] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,440] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"不合法的pageShowNum参数！"}
+[2018-05-17 12:48:57,440] [INFO]  ===end request===
+[2018-05-17 12:48:57,440] [INFO] validator_error,返回错误,不合法的pageShowNum参数！
+[2018-05-17 12:48:57,440] [INFO] ****************case FalseCase_012 success****************
+[2018-05-17 12:48:57,440] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,441] [INFO] ****************case FalseCase_012 success****************
+
+[2018-05-17 12:48:57,441] [INFO] *****************start case FalseCase_013************************
+[2018-05-17 12:48:57,441] [INFO] 测试点：状态格式错误
+[2018-05-17 12:48:57,441] [INFO] ===start request===
+[2018-05-17 12:48:57,441] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": "a", "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:57,442] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,459] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,462] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"保单状态应为整数！"}
+[2018-05-17 12:48:57,462] [INFO]  ===end request===
+[2018-05-17 12:48:57,462] [INFO] validator_error,返回错误,保单状态应为整数！
+[2018-05-17 12:48:57,462] [INFO] ****************case FalseCase_013 success****************
+[2018-05-17 12:48:57,462] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,462] [INFO] ****************case FalseCase_013 success****************
+
+[2018-05-17 12:48:57,462] [INFO] *****************start case FalseCase_020************************
+[2018-05-17 12:48:57,462] [INFO] 测试点：投保开始时间startDate日期格式错误
+[2018-05-17 12:48:57,462] [INFO] ===start request===
+[2018-05-17 12:48:57,463] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": "asd", "endDate": null, "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:57,464] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,492] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,494] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"投保开始时间格式错误！"}
+[2018-05-17 12:48:57,494] [INFO]  ===end request===
+[2018-05-17 12:48:57,494] [INFO] validator_error,返回错误,投保开始时间格式错误！
+[2018-05-17 12:48:57,494] [INFO] ****************case FalseCase_020 success****************
+[2018-05-17 12:48:57,494] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,494] [INFO] ****************case FalseCase_020 success****************
+
+[2018-05-17 12:48:57,494] [INFO] *****************start case FalseCase_022************************
+[2018-05-17 12:48:57,494] [INFO] 测试点：投保结束日期endDate日期格式错误
+[2018-05-17 12:48:57,494] [INFO] ===start request===
+[2018-05-17 12:48:57,494] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": "asd", "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:57,496] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:57,512] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:57,515] [INFO] 成功，200, {"success":"false","resultCode":"validator_error","resultMsg":"投保结束时间格式错误！"}
+[2018-05-17 12:48:57,516] [INFO]  ===end request===
+[2018-05-17 12:48:57,516] [INFO] validator_error,返回错误,投保结束时间格式错误！
+[2018-05-17 12:48:57,516] [INFO] ****************case FalseCase_022 success****************
+[2018-05-17 12:48:57,516] [INFO] 本场景测试通过！
+[2018-05-17 12:48:57,516] [INFO] ****************case FalseCase_022 success****************
+
+[2018-05-17 12:48:57,516] [INFO] *****************start case FalseCase_024************************
+[2018-05-17 12:48:57,516] [INFO] 测试点：销售模式不能为1传统手工出单 2 移动展业出单 3银保通出单 4 网银出单 5自助机出单 6网络出单外的字符串
+[2018-05-17 12:48:57,516] [INFO] ===start request===
+[2018-05-17 12:48:57,517] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "saleModeList": [{"saleMode": "hh"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:57,518] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:58,489] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:58,491] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:58,491] [INFO]  ===end request===
+[2018-05-17 12:48:58,491] [ERROR] ***************case FalseCase_024 faild******************
+[2018-05-17 12:48:58,491] [ERROR] error code: -1
+[2018-05-17 12:48:58,492] [ERROR] error message: 测试失败,错误入参不能识别
+[2018-05-17 12:48:58,492] [ERROR] ***************case FalseCase_024 faild******************
+
+[2018-05-17 12:48:58,492] [INFO] *****************start case FalseCase_025************************
+[2018-05-17 12:48:58,492] [INFO] 测试点：销售模式下分版本subSaleMode不能为W:web版本 P:pad版本 M手机版本 SD:盛大 WX:微信 KX:开心保 AP:支付宝 TM:天猫 BB:百宝网 之外的字符串
+[2018-05-17 12:48:58,492] [INFO] ===start request===
+[2018-05-17 12:48:58,492] [INFO] POST, /contract/getpolicylist, {"userCode": "4880000002", "orderNo": null, "prtNo": null, "contNo": null, "status": null, "appntCode": null, "appntName": null, "insuredName": null, "startDate": null, "endDate": null, "subSaleModeList": [{"subSaleMode": "hhh"}], "page": "1", "pageShowNum": "10"}
+[2018-05-17 12:48:58,493] [DEBUG] Starting new HTTP connection (1): 10.10.20.115
+[2018-05-17 12:48:59,239] [DEBUG] http://10.10.20.115:8108 "POST /contract/getpolicylist HTTP/1.1" 200 None
+[2018-05-17 12:48:59,239] [INFO] 成功，200, {"success":"true","resultCode":"0","resultMsg":null,"result":{"policyInfoList":[]}}
+[2018-05-17 12:48:59,239] [INFO]  ===end request===
+[2018-05-17 12:48:59,240] [ERROR] ***************case FalseCase_025 faild******************
+[2018-05-17 12:48:59,240] [ERROR] error code: -1
+[2018-05-17 12:48:59,240] [ERROR] error message: 测试失败,错误入参不能识别
+[2018-05-17 12:48:59,240] [ERROR] ***************case FalseCase_025 faild******************
+
+[2018-05-17 12:48:59,240] [INFO] *****************start delete test data*****************
+[2018-05-17 12:48:59,268] [INFO] *****************delete test data finish*****************
+[2018-05-17 12:48:59,268] [INFO] ****************test end**********************
+[2018-05-17 12:48:59,268] [INFO] case count: 24, success count: 22, faild count: 2
+[2018-05-17 12:48:59,269] [INFO] **********************************************

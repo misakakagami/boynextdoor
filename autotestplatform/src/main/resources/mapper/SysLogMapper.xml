@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.autotestplatform.dao.SysLogMapper">
+  <resultMap id="BaseResultMap" type="com.autotestplatform.entity.SysLog">
+    <id column="sys_log_id" jdbcType="INTEGER" property="sysLogId" />
+    <result column="use_case_id" jdbcType="INTEGER" property="useCaseId" />
+    <result column="plan_id" jdbcType="INTEGER" property="planId" />
+    <result column="plan_result_id" jdbcType="INTEGER" property="planResultId" />
+    <result column="log_name" jdbcType="VARCHAR" property="logName" />
+    <result column="log_url" jdbcType="VARCHAR" property="logUrl" />
+    <result column="log_type" jdbcType="INTEGER" property="logType" />
+    <result column="log_status" jdbcType="INTEGER" property="logStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sys_log_id, use_case_id, plan_id, plan_result_id, log_name, log_url, log_type, log_status, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where sys_log_id = #{sysLogId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_log
+    where sys_log_id = #{sysLogId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.autotestplatform.entity.SysLog">
+    insert into sys_log (use_case_id, plan_id, plan_result_id,
+      log_name, log_url, log_type, 
+      log_status, create_time, update_time
+      )
+    values (#{useCaseId,jdbcType=INTEGER}, #{planId,jdbcType=INTEGER}, #{planResultId,jdbcType=INTEGER},
+      #{logName,jdbcType=VARCHAR}, #{logUrl,jdbcType=VARCHAR}, #{logType,jdbcType=INTEGER}, 
+      #{logStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.autotestplatform.entity.SysLog">
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="useCaseId != null">
+        use_case_id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="planResultId != null">
+        plan_result_id,
+      </if>
+      <if test="logName != null">
+        log_name,
+      </if>
+      <if test="logUrl != null">
+        log_url,
+      </if>
+      <if test="logType != null">
+        log_type,
+      </if>
+      <if test="logStatus != null">
+        log_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="useCaseId != null">
+        #{useCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="planResultId != null">
+        #{planResultId,jdbcType=INTEGER},
+      </if>
+      <if test="logName != null">
+        #{logName,jdbcType=VARCHAR},
+      </if>
+      <if test="logUrl != null">
+        #{logUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null">
+        #{logType,jdbcType=INTEGER},
+      </if>
+      <if test="logStatus != null">
+        #{logStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.autotestplatform.entity.SysLog">
+    update sys_log
+    <set>
+      <if test="useCaseId != null">
+        use_case_id = #{useCaseId,jdbcType=INTEGER},
+      </if>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=INTEGER},
+      </if>
+      <if test="planResultId != null">
+        plan_result_id = #{planResultId,jdbcType=INTEGER},
+      </if>
+      <if test="logName != null">
+        log_name = #{logName,jdbcType=VARCHAR},
+      </if>
+      <if test="logUrl != null">
+        log_url = #{logUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="logType != null">
+        log_type = #{logType,jdbcType=INTEGER},
+      </if>
+      <if test="logStatus != null">
+        log_status = #{logStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sys_log_id = #{sysLogId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.autotestplatform.entity.SysLog">
+    update sys_log
+    set use_case_id = #{useCaseId,jdbcType=INTEGER},
+      plan_id = #{planId,jdbcType=INTEGER},
+      plan_result_id = #{planResultId,jdbcType=INTEGER},
+      log_name = #{logName,jdbcType=VARCHAR},
+      log_url = #{logUrl,jdbcType=VARCHAR},
+      log_type = #{logType,jdbcType=INTEGER},
+      log_status = #{logStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where sys_log_id = #{sysLogId,jdbcType=INTEGER}
+  </update>
+</mapper>
