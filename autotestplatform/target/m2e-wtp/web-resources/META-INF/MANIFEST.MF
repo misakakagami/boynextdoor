@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: autotestplatform Maven Webapp
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: ￥ﾼﾠ￦ﾖﾇ￥ﾍﾚ
+Built-By: aeon
 Implementation-Vendor-Id: com.sinosoft
 Build-Jdk: 1.8.0_60
 Implementation-URL: http://maven.apache.org
