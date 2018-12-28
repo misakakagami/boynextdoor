@@ -40,7 +40,9 @@ public class PlanFacade extends BaseFacade {
         Plan plan = planDao.selectByPrimaryKey(runPlanInDto.getPlanId());
         User loginUser = (User) getSession().getAttribute("loginUser");
         //update data
-        plan.setPlanStatus(runPlanInDto.getStatus());
+        if(plan.getPlanType()==1) {
+        	plan.setPlanStatus(runPlanInDto.getStatus());
+        }
         plan.setUpdateTime(new Date());
         plan.setUpdateUserId(loginUser.getUserId());
         planDao.updateByPrimaryKeySelective(plan);
