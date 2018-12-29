@@ -10,6 +10,8 @@ public class ExcResult implements Serializable{
     */
     private static final long serialVersionUID = 1L;
     
+    private String planResultName;
+    
     private Integer sumUseCase;
     
     private Integer errUseCase = 0;
@@ -21,8 +23,11 @@ public class ExcResult implements Serializable{
 
 	
 
-	public ExcResult(Integer sumUseCase, Integer errUseCase, String status, List<SingleCaseDto> caseList) {
+
+	public ExcResult(String planResultName, Integer sumUseCase, Integer errUseCase, String status,
+			List<SingleCaseDto> caseList) {
 		super();
+		this.planResultName = planResultName;
 		this.sumUseCase = sumUseCase;
 		this.errUseCase = errUseCase;
 		this.status = status;
@@ -64,6 +69,14 @@ public class ExcResult implements Serializable{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getPlanResultName() {
+		return planResultName;
+	}
+
+	public void setPlanResultName(String planResultName) {
+		this.planResultName = planResultName;
 	}
     
 }
