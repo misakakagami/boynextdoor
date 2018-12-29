@@ -20,7 +20,11 @@ import com.autotestplatform.dto.plan.detail.PlanUseCaseListDetailDto;
 import com.autotestplatform.dto.plan.insert.PlanInsertInDto;
 import com.autotestplatform.dto.plan.list.PlanListInDto;
 import com.autotestplatform.dto.plan.list.PlanListOutDto;
+import com.autotestplatform.dto.plan.result.PlanResultInDto;
+import com.autotestplatform.dto.plan.result.PlanResultOutDto;
 import com.autotestplatform.dto.plan.update.PlanUpdateInDto;
+import com.autotestplatform.dto.useCase.script.ScriptListInDto;
+import com.autotestplatform.dto.useCase.script.ScriptListOutDto;
 import com.autotestplatform.facade.usecase.PlanFacade;
 import com.autotestplatform.service.plan.PlanService;
 
@@ -154,10 +158,25 @@ public class PlanController extends BaseController {
     }
 
     @RequestMapping(value = "/stopPlan")
-    @ResponseBody
     public ModelAndView stopPlan(RunPlanInDto runPlanInDto) {
         planFacade.updatePlan(runPlanInDto);
         return getPlanList(new PlanListInDto());
     }
 
+    /**
+     * @Description：脚本历史版本列表
+     * @param scriptInDto
+     * @return ModelAndView: 返回值类型
+     * @throws
+     */
+    @RequestMapping(value = "/getPlanResult")
+    public ModelAndView getPlanResult(PlanResultInDto planResultInDto) {
+        logger.info("查看计划执行结果 planId=" + planResultInDto.getPlanId());
+        ModelAndView modelAndView = new ModelAndView();
+        PlanResultOutDto planResultOutDto = planService.getPlanResult(planResultInDto);
+        modelAndView.addObject("planResultOutDto", planResultOutDto);
+        modelAndView.setViewName("ftl/page/planResultList");
+        return modelAndView;
+    }
+    
 }

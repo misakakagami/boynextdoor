@@ -144,4 +144,11 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where sys_log_id = #{sysLogId,jdbcType=INTEGER}
   </update>
+  <select id="selectByPlanIdAndPlanResultId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where plan_id = #{planId,jdbcType=INTEGER}
+     and plan_result_id = #{planResultId,jdbcType=INTEGER}
+  </select>
 </mapper>

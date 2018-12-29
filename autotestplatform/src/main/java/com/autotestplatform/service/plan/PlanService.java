@@ -1,6 +1,7 @@
 package com.autotestplatform.service.plan;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.autotestplatform.dao.PlanMapper;
+import com.autotestplatform.dao.PlanResultMapper;
 import com.autotestplatform.dao.ProjectMapper;
+import com.autotestplatform.dao.SysLogMapper;
 import com.autotestplatform.dao.UseCaseMapper;
 import com.autotestplatform.dao.UseCasePlanRelationMapper;
 import com.autotestplatform.dto.common.PageDto;
@@ -24,8 +27,14 @@ import com.autotestplatform.dto.plan.insert.PlanInsertInDto;
 import com.autotestplatform.dto.plan.list.PlanListDetailDto;
 import com.autotestplatform.dto.plan.list.PlanListInDto;
 import com.autotestplatform.dto.plan.list.PlanListOutDto;
+import com.autotestplatform.dto.plan.result.ExcResult;
+import com.autotestplatform.dto.plan.result.PlanResultInDto;
+import com.autotestplatform.dto.plan.result.PlanResultOutDto;
+import com.autotestplatform.dto.plan.result.SingleCaseDto;
 import com.autotestplatform.dto.plan.update.PlanUpdateInDto;
 import com.autotestplatform.entity.Plan;
+import com.autotestplatform.entity.PlanResult;
+import com.autotestplatform.entity.SysLog;
 import com.autotestplatform.entity.UseCasePlanRelation;
 import com.autotestplatform.entity.User;
 import com.autotestplatform.service.base.BaseService;
@@ -49,6 +58,12 @@ public class PlanService extends BaseService {
 
     @Autowired
     private UseCaseMapper             useCaseDao;
+    
+    @Autowired
+    private SysLogMapper             sysLogDao;
+    
+    @Autowired
+    private PlanResultMapper            planResultDao;
 
     @Autowired
     private UseCasePlanRelationMapper useCasePlanRelationDao;
@@ -221,6 +236,71 @@ public class PlanService extends BaseService {
      */
     public void deleteUseCasePlanRelation(UseCasePlanRelationDto useCasePlanRelationDto) {
         useCasePlanRelationDao.deletePlanIdAndUseCaseId(useCasePlanRelationDto.getUseCasePlanRelationId());
+    }
+    
+    /**
+     * @Description：获取执行结果
+     * @param planResultInDto: 返回结果描述
+     * @return planResultOutDto: 返回值类型
+     * @throws
+     */
+    public PlanResultOutDto getPlanResult(PlanResultInDto inDto) {
+    	//init
+    	List<Integer> historyAllResult = new ArrayList<Integer>();
+    	List<Integer> historyErrResult = new ArrayList<Integer>();
+    	List<SingleCaseDto> logList = null;
+    	PlanResultOutDto res = new PlanResultOutDto();
+    	List<SysLog> sysLogList = null;
+    	ExcResult excRes = null;
+    	SingleCaseDto scd = null;
+    	List<ExcResult> excResList = new ArrayList<ExcResult>();
+    	//set
+    	List<PlanResult> planResList = planResultDao.selectAllPlanResultList(inDto.getPlanId());
+    	res.setExcNum(planResList.size());
+    	for(PlanResult pr:planResList) {
+    		sysLogList = sysLogDao.selectByPlanIdAndPlanResultId(inDto.getPlanId(), pr.getPlanResultId());
+    		excRes = new ExcResult();
+    		excRes.setErrUseCase(0);
+    		excRes.setSumUseCase(0);
+    		if(pr.getPlanResultStatus()==0) {
+    			//正在执行中
+    			excRes.setStatus("r");
+    		}
+    		logList = new ArrayList<SingleCaseDto>();
+    		for(SysLog sl:sysLogList) {
+    			scd = new SingleCaseDto();
+    			scd.setLogId(sl.getSysLogId());
+    			scd.setLogName(sl.getLogName().split("-")[2].replaceAll("+++", "\r\n"));//失败的案例信息
+    			scd.setUseCaseId(sl.getUseCaseId());
+    			scd.setUseCaseName(useCaseDao.selectByPrimaryKey(sl.getUseCaseId()).getUseCaseName());
+    			scd.setLogUrl(sl.getLogUrl());
+    			scd.setLogTime(sl.getCreateTime());
+    			try {
+    				scd.setSumExample(Integer.parseInt(sl.getLogName().split("-")[1].trim()));
+    			} catch (Exception e) {
+    				scd.setSumExample(0);
+    			}
+    			try {
+    				scd.setErrExample(Integer.parseInt(sl.getLogName().split("-")[0].trim()));
+    			} catch (Exception e) {
+    				scd.setErrExample(0);
+    			}
+    			logList.add(scd);
+    			excRes.setErrUseCase(excRes.getErrUseCase() + scd.getErrExample());
+    			excRes.setSumUseCase(excRes.getSumUseCase() + scd.getSumExample());
+    		}
+    		excRes.setCaseList(logList);
+    		excResList.add(excRes);
+    		historyAllResult.add(excRes.getSumUseCase());
+    		historyErrResult.add(excRes.getErrUseCase());
+    	}
+    	Collections.reverse(historyAllResult);
+    	Collections.reverse(historyErrResult);
+    	res.setHistoryAllResult(historyAllResult);
+    	res.setHistoryErrResult(historyErrResult);
+    	res.setResultList(excResList);
+    	//return
+    	return res;
     }
 
 }

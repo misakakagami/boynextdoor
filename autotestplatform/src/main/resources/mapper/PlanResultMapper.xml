@@ -49,6 +49,16 @@
 		from plan_result
 		where plan_result_id = #{planResultId,jdbcType=INTEGER}
 	</select>
+	<select id="selectAllPlanResultList" parameterType="java.lang.Integer"
+		resultType="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from plan_result
+		<if test="planId !=null">
+			where plan_id = #{planId,jdbcType=INTEGER}
+		</if>
+		order by plan_result_id desc
+	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from plan_result
 		where plan_result_id = #{planResultId,jdbcType=INTEGER}

@@ -47,7 +47,7 @@ CREATE TABLE sys_log
    use_case_id          INT NOT NULL,
    plan_id              INT NOT NULL,
    plan_result_id       INT NOT NULL,
-   log_name             VARCHAR(100),
+   log_name             VARCHAR(8000),
    log_url              VARCHAR(200),
    log_type             INT,
    log_status           INT,

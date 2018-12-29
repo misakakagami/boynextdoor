@@ -24,5 +24,7 @@ public interface PlanResultMapper {
     List<PlanResultDto> selectPlanResultList(Map<String, Object> map);
 
     Integer selectPlanResultListCount(@Param("planId") Integer planId);
+    
+    List<PlanResult> selectAllPlanResultList(@Param("planId") Integer planId);
 
 }

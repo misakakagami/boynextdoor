@@ -23,6 +23,7 @@ import com.autotestplatform.entity.SysLog;
 import com.autotestplatform.entity.UseCase;
 import com.autotestplatform.entity.UseCasePlanRelation;
 import com.autotestplatform.facade.usecase.PlanRunInstance;
+import com.autotestplatform.utils.FileUtils;
 import com.autotestplatform.utils.StringUtils;
 import com.autotestplatform.vo.CaseResult;
 
@@ -70,6 +71,16 @@ public class RunPlanForOneTime extends RunScriptClass implements PlanRunInstance
             useCasePlanRelationDao.updateByPrimaryKeySelective(ucpr);
         }
         List<UseCase> useCaseList = useCaseDao.selectUseCaseEntityList(planId);
+        //执行结果
+        PlanResult planResult = new PlanResult();
+        planResult.setCreateTime(new Date());
+        planResult.setSumNum(1);
+        planResult.setPlanId(planId);
+        planResult.setPlanResultStatus(0);
+        planResult.setSuccessNum(0);
+        planResult.setWarnFlag("1");
+        planResultDao.insert(planResult);
+        Integer planResultId = planResult.getPlanResultId();
         for (UseCase uc : useCaseList) {
             //执行脚本(异步)
             ExecutorService executor = Executors.newCachedThreadPool();
@@ -86,21 +97,18 @@ public class RunPlanForOneTime extends RunScriptClass implements PlanRunInstance
                 public void accept(CaseResult t) {
                     //回调
                     if (!StringUtils.isEmpty(t.getLogUrl())) {
-                        //计划执行结果
-                        PlanResult planResult = new PlanResult();
-                        planResult.setCreateTime(new Date());
-                        planResult.setSumNum(1);
-                        planResult.setPlanId(planId);
-                        planResult.setPlanResultStatus(0);
-                        planResult.setSuccessNum(0);
-                        planResult.setWarnFlag("1");
-                        planResultDao.insert(planResult);
-                        Integer planResultId = planResult.getPlanResultId();
+                    	//读取日志获得案例成功失败数量
+                    	String logRes;
+                    	try {
+                    		logRes = FileUtils.readTxt("src/main/webapp/testLogs/"+t.getLogUrl());//用于记录执行结果，失败数-总数-失败案例的用例号+++测试点
+						} catch (Exception e) {
+							logRes = "0-0-";
+						}
                         //日志记录
                         SysLog log = new SysLog();
                         log.setPlanResultId(planResultId);
                         log.setUseCaseId(uc.getUseCaseId());
-                        log.setLogName(uc.getUseCaseName());
+                        log.setLogName(logRes);
                         log.setLogStatus(0);
                         log.setLogUrl(t.getLogUrl());
                         log.setLogType(0);
