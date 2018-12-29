@@ -2,6 +2,8 @@ package com.autotestplatform.service.useCase;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +13,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.autotestplatform.contants.Contants;
@@ -322,7 +325,7 @@ public class UseCaseService extends BaseService {
      * @return String: 返回
      * @throws
      */
-    @Transactional
+    @Transactional(rollbackFor = CustomException.class)
     public String uploadScript(UploadScriptInDto uploadScriptInDto) throws CustomException {
         User loginUser = (User) getSession().getAttribute("loginUser");
         //change old script
@@ -357,6 +360,7 @@ public class UseCaseService extends BaseService {
         try {
             FileUtils.uploadFile(file.getBytes(), filePath, fileName);
         } catch (Exception e) {
+        	TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             throw new CustomException("上传失败", e);
         }
         //changeExampleName
@@ -364,8 +368,10 @@ public class UseCaseService extends BaseService {
             if (!FileUtils.updateExcelNameInScript(filePath + fileName,
                     "exampleUpload/use" + uploadScriptInDto.getUseCaseId() + ".xlsx")) {
                 //脚本中不包含excelName，删除并提示
-                File f = new File(filePath);
-                f.deleteOnExit();
+                File f = new File(filePath+fileName);
+                if(f.exists()) {
+                	f.delete();
+                }
                 throw new CustomException("脚本中不包含'excelName'字符串，请修改后再上传");
             }
         } catch (IOException e) {

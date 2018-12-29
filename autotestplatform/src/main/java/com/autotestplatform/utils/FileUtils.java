@@ -161,6 +161,9 @@ public class FileUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	if(fai.length()<2) {
+    		fai.append("无");
+    	}
     	return sb.append("-").append(fai).toString();
     }
     
