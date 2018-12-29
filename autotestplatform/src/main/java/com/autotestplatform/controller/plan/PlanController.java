@@ -1,6 +1,14 @@
 package com.autotestplatform.controller.plan;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +28,16 @@ import com.autotestplatform.dto.plan.detail.PlanUseCaseListDetailDto;
 import com.autotestplatform.dto.plan.insert.PlanInsertInDto;
 import com.autotestplatform.dto.plan.list.PlanListInDto;
 import com.autotestplatform.dto.plan.list.PlanListOutDto;
+import com.autotestplatform.dto.plan.result.DownloadLog;
 import com.autotestplatform.dto.plan.result.PlanResultInDto;
 import com.autotestplatform.dto.plan.result.PlanResultOutDto;
 import com.autotestplatform.dto.plan.update.PlanUpdateInDto;
+import com.autotestplatform.dto.useCase.script.DownloadScript;
 import com.autotestplatform.dto.useCase.script.ScriptListInDto;
 import com.autotestplatform.dto.useCase.script.ScriptListOutDto;
 import com.autotestplatform.facade.usecase.PlanFacade;
 import com.autotestplatform.service.plan.PlanService;
+import com.autotestplatform.vo.LogNameAndUrl;
 
 /**
  * 
@@ -138,6 +149,17 @@ public class PlanController extends BaseController {
     public List<PlanUseCaseListDetailDto> refreshUseCasePlanRelation(Integer planId) {
         return planService.refreshUseCasePlanRelation(planId);
     }
+    
+    /**
+     * @Description：刷新计划执行状态
+     * @return: 返回结果描述
+     * @throws
+     */
+    @RequestMapping(value = "/refreshPlanStatus")
+    @ResponseBody
+    public Integer refreshPlanStatus(Integer planId) {
+        return planService.refreshPlanStatus(planId);
+    }
 
     /**
      * @Description：删除用例到计划
@@ -152,15 +174,15 @@ public class PlanController extends BaseController {
     }
 
     @RequestMapping(value = "/runPlan")
-    public ModelAndView runPlan(RunPlanInDto runPlanInDto) {
+    public String runPlan(RunPlanInDto runPlanInDto) {
         planFacade.updatePlan(runPlanInDto);
-        return getPlanList(new PlanListInDto());
+        return "";
     }
 
     @RequestMapping(value = "/stopPlan")
-    public ModelAndView stopPlan(RunPlanInDto runPlanInDto) {
+    public String stopPlan(RunPlanInDto runPlanInDto) {
         planFacade.updatePlan(runPlanInDto);
-        return getPlanList(new PlanListInDto());
+        return "";
     }
 
     /**
@@ -178,5 +200,49 @@ public class PlanController extends BaseController {
         modelAndView.setViewName("ftl/page/planResultList");
         return modelAndView;
     }
-    
+
+    /**
+     * @Description：下载日志
+     * @return void: 返回值类型
+     * @throws
+     */
+    @RequestMapping(value = "/downloadLog")
+    public void downloadLog(DownloadLog downloadScript, HttpServletResponse response) {
+        LogNameAndUrl logDownloadMessage = planService.getLogNameAndUrl(downloadScript.getLogId());
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        try {
+            response.setHeader("Content-Disposition", "attachment;filename="
+                    + new String(logDownloadMessage.getLogUrl().getBytes("utf-8"), "ISO_8859_1"));
+        } catch (UnsupportedEncodingException e1) {
+            logger.info("下载脚本" + downloadScript.getLogId() + "出错，文件名编码错误", e1);
+            response.setHeader("Content-Disposition", "attachment;filename=" + downloadScript.getLogId() + "."
+                    + logDownloadMessage.getLogUrl().split("\\.")[1]);
+        }
+        byte[] buff = new byte[1024];
+        BufferedInputStream bis = null;
+        OutputStream os = null;
+        try {
+            os = response.getOutputStream();
+            bis = new BufferedInputStream(new FileInputStream(
+                    new File(getSession().getServletContext().getRealPath(logDownloadMessage.getLogUrl()))));
+            int i = bis.read(buff);
+            while (i != -1) {
+                os.write(buff, 0, buff.length);
+                os.flush();
+                i = bis.read(buff);
+            }
+        } catch (IOException e) {
+            logger.info("下载脚本" + downloadScript.getLogId() + "出错", e);
+        } finally {
+            if (bis != null) {
+                try {
+                    bis.close();
+                } catch (IOException e) {
+                    logger.info("下载脚本" + downloadScript.getLogId() + "关闭bis出错");
+                }
+            }
+        }
+    }
+
 }

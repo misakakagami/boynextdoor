@@ -34,11 +34,14 @@ import com.autotestplatform.dto.plan.result.SingleCaseDto;
 import com.autotestplatform.dto.plan.update.PlanUpdateInDto;
 import com.autotestplatform.entity.Plan;
 import com.autotestplatform.entity.PlanResult;
+import com.autotestplatform.entity.Script;
 import com.autotestplatform.entity.SysLog;
 import com.autotestplatform.entity.UseCasePlanRelation;
 import com.autotestplatform.entity.User;
 import com.autotestplatform.service.base.BaseService;
 import com.autotestplatform.utils.StringUtils;
+import com.autotestplatform.vo.LogNameAndUrl;
+import com.autotestplatform.vo.ScriptNameAndUrl;
 
 /**
  * 
@@ -205,6 +208,16 @@ public class PlanService extends BaseService {
     public List<PlanUseCaseListDetailDto> refreshUseCasePlanRelation(Integer planId) {
         return useCaseDao.selectUseCaseDetailOutDtoListByPlanId(planId);
     }
+    
+    /**
+     * @Description：刷新计划状态
+     * @param planId
+     * @return Integer: 返回值类型
+     * @throws
+     */
+    public Integer refreshPlanStatus(Integer planId) {
+    	return planDao.selectByPrimaryKey(planId).getPlanStatus();
+    }
 
     /**
      * @Description：修改
@@ -262,6 +275,7 @@ public class PlanService extends BaseService {
     		excRes = new ExcResult();
     		excRes.setErrUseCase(0);
     		excRes.setSumUseCase(0);
+    		excRes.setPlanResultName(pr.getPlanResultName());
     		if(pr.getPlanResultStatus()==0) {
     			//正在执行中
     			excRes.setStatus("r");
@@ -270,7 +284,7 @@ public class PlanService extends BaseService {
     		for(SysLog sl:sysLogList) {
     			scd = new SingleCaseDto();
     			scd.setLogId(sl.getSysLogId());
-    			scd.setLogName(sl.getLogName().split("-")[2].replaceAll("+++", "\r\n"));//失败的案例信息
+    			scd.setLogName(sl.getLogName().split("-")[2].replaceAll("\\+++", "\r\n"));//失败的案例信息
     			scd.setUseCaseId(sl.getUseCaseId());
     			scd.setUseCaseName(useCaseDao.selectByPrimaryKey(sl.getUseCaseId()).getUseCaseName());
     			scd.setLogUrl(sl.getLogUrl());
@@ -302,5 +316,18 @@ public class PlanService extends BaseService {
     	//return
     	return res;
     }
-
+    
+    /**
+     * @Description：获得脚本下载时显示的名字、脚本路径
+     * @param scriptId
+     * @return: 返回结果描述
+     * @return ScriptNameAndUrl: 返回值类型
+     * @throws
+     */
+    public LogNameAndUrl getLogNameAndUrl(Integer logId) {
+    	LogNameAndUrl scriptNameAndUrl = new LogNameAndUrl();
+        SysLog log = sysLogDao.selectByPrimaryKey(logId);
+        scriptNameAndUrl.setLogUrl("testLogs/"+log.getLogUrl());
+        return scriptNameAndUrl;
+    }
 }

@@ -102,7 +102,7 @@ public class RunPlanForOneTime extends RunScriptClass implements PlanRunInstance
                     	try {
                     		logRes = FileUtils.readTxt("src/main/webapp/testLogs/"+t.getLogUrl());//用于记录执行结果，失败数-总数-失败案例的用例号+++测试点
 						} catch (Exception e) {
-							logRes = "0-0-";
+							logRes = "0-0-无";
 						}
                         //日志记录
                         SysLog log = new SysLog();

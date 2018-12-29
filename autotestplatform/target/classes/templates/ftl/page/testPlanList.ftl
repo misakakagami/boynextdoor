@@ -123,7 +123,7 @@
 											<td>${pl.planId}</td>
 											<td><a href="/plan/planDetail?planId=${pl.planId}">${pl.planName}</a></td>
 											<td>${pl.planType}</td>
-											<td><#if pl.planStatus?? && pl.planStatus == -1>
+											<td id="planStatusTd${pl.planId}" name="planStatusClass"><#if pl.planStatus?? && pl.planStatus == -1>
 									                <span style="color:red">弃用</span>
 									            <#elseif pl.planStatus?? && pl.planStatus == 0>
 									                <span style="color:green">正常/未执行</span>
@@ -138,21 +138,27 @@
 								            <form id="deletePlan${pl.planId}">
 											<td><a href="/plan/planDetail?planId=${pl.planId}"><button
 														type="button" class="btn btn-info btn-xs">查看计划详情</button></a>
+												<!--
 												<button ng-click="showDlg(true)" class="btn btn-info btn-xs"
 													data-toggle="modal" data-target="#changePermission">修改</button>
+													-->
                                                 <input type="hidden" name="planIdList[0]" value="${pl.planId}">										    
 												<a href="javascript:void(0)" onclick="submitDeletePlan('${pl.planId}');return false;">
 												<button class="btn btn-info btn-xs">标记弃用</button></a>
+									              <a href="/plan/getPlanResult?planId=${pl.planId}">
+									              <button type="button" class="btn btn-info btn-xs" >查看执行结果</button></a>
+													<span id="excBtn${pl.planId}" >
 												<#if pl.planStatus == 0 >
-										              <a href="/plan/runPlan?planId=${pl.planId}&status=1">
-										              <button type="button" class="btn btn-info btn-xs" >执行</button></a>
+													<a href="javascript:void(0)" onclick="runPlan('${pl.planId}');return false;">
+										              <button type="button" class="btn btn-info btn-xs" >执行</button>
+										              </a>
 										          <#elseif pl.planStatus == -1 >
 										             <span style="color:grey">已弃用</span>
 										          <#elseif pl.planStatus != 0 >
-										              <a href="/plan/stopPlan?planId=${pl.planId}&status=0">
-										              <button type="button" class="btn btn-info btn-xs" >停止</button></a>
-										          </#if>														
-											</td>													
+										              <button type="button" class="btn btn-info btn-xs" onclick="stopPlan(${pl.planId});return fales;" >停止</button>
+										          </#if>
+										          </span>
+											</td>
 											</form>
 										</tr>
 									</tbody>
@@ -414,4 +420,5 @@
 
   </body>
 <script src="/js/addPlan.js"></script>
+<script src="/js/longLink.js"></script>
 </html>

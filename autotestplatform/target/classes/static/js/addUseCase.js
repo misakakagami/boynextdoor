@@ -199,7 +199,7 @@ function uploadScript() {
 				alert("上传成功");
 				$("#scriptArea").html("<a href='/useCase/downloadScript?scriptId="+data+"'>下载</a>当前脚本<br/>");
 			}else{
-				alert("上传失败");
+				alert("上传失败，请检查脚本是否包含\"excelName\"字符串");
 			}
 		},
 		error: function (returndata) {

@@ -89,7 +89,15 @@
 				<div class="profile-info-name"> 计划状态</div>
 				<input type="hidden" name="planDto.planStatus" value="${planDetailOutDto.planStatus}" />
 				<div class="profile-info-value">
-					<span class="editable" id="signup">${planDetailOutDto.planStatus}</span>
+					<span class="editable" id="planStatusTd${planDetailOutDto.planId}" name="planStatusClass">
+						<#if planDetailOutDto.planStatus?? && planDetailOutDto.planStatus == -1>
+			                <span style="color:red">弃用</span>
+			            <#elseif planDetailOutDto.planStatus?? && planDetailOutDto.planStatus == 0>
+			                <span style="color:green">正常/未执行</span>
+			            <#elseif planDetailOutDto.planStatus?? && planDetailOutDto.planStatus == 1>
+			                <span style="color:yellow">执行中</span>
+			            </#if>
+					</span>
 				</div>
 			</div>
 
@@ -137,7 +145,24 @@
 
 				<div class="profile-info-value">
 					<span class="editable" id="signup">
-						<input type="submit" class="btn btn-info" data-dismiss="modal"  value="修改" onclick="submitUpdatePlan();return false;" />
+						<button type="button" class="btn btn-info" data-dismiss="modal"  value="修改" onclick="submitUpdatePlan();return false;" >修改</button>
+					</span>
+				</div>
+			</div>
+			
+			<div class="profile-info-row">
+				<div class="profile-info-name"> 执行计划</div>
+
+				<div class="profile-info-value">
+					<span class="editable" id="excBtn${planDetailOutDto.planId}" >
+						<#if planDetailOutDto.planStatus == 0 >
+				              <button type="button" class="btn btn-info" data-dismiss="modal" onclick="runPlan(${planDetailOutDto.planId});return fales;" >执行</button>
+				          <#elseif planDetailOutDto.planStatus == -1 >
+				             <span style="color:grey">已弃用</span>
+				          <#elseif planDetailOutDto.planStatus != 0 >
+				              <a href="/plan/stopPlan?planId=${planDetailOutDto.planId}&status=0">
+				              <button type="button" class="btn btn-info" data-dismiss="modal" onclick="stopPlan(${planDetailOutDto.planId});return fales;" >停止</button></a>
+				          </#if>
 					</span>
 				</div>
 			</div>
@@ -338,3 +363,4 @@
 
   </body>
 </html>
+<script src="/js/longLink.js"></script>
