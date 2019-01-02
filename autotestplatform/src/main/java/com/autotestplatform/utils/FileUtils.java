@@ -161,6 +161,10 @@ public class FileUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+    	if(sb.length()<2) {
+    		sb.append("0-0-执行出错");
+    		fai.append("+++");
+    	}
     	if(fai.length()<2) {
     		fai.append("无");
     	}

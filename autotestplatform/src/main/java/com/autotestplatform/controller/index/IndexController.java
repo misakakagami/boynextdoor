@@ -127,4 +127,14 @@ public class IndexController extends BaseController {
         modelAndView.setViewName("ftl/page/login");
         return modelAndView;
     }
+    
+    @RequestMapping(value="/testString",method=RequestMethod.POST)
+    public String testString(String in) {
+    	double a = Math.random();
+    	if(a<0.5) {
+    		return "0";
+    	}else {
+    		return "1";
+    	}
+    }
 }

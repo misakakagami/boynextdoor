@@ -28,7 +28,7 @@ $(document).ready(function() {
 <body><canvas class="pg-canvas" width="1600" height="362"></canvas>
 <dl class="admin_login">
 <dt>
-<strong>研发一体化平台</strong>
+<strong>sinosoft自动化测试平台</strong>
 <em>Autotest platform</em>
 </dt>
 <form action="/login" method="post">
@@ -51,10 +51,8 @@ $(document).ready(function() {
 </dd>
 <span style="color:red">${errorMessage!''}</span>
 <dd>
-<!--
 <p>© 2018-2018 红魔馆 版权所有</p>
 <p>新日暮里18-118</p>
--->
 </dd>
 </dl>
 <script type="text/javascript" src="/a_data/su.js"></script>

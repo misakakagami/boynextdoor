@@ -24,7 +24,7 @@ public class SingleCaseDto implements Serializable{
 	private Integer useCaseId;
 	//useCase名称
 	private String useCaseName;
-	//日志名称
+	//日志信息 失败数-总数-失败信息
 	private String logName;
 	//日志生成时间
 	private Date logTime;

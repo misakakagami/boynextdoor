@@ -10,6 +10,8 @@ public class ExcResult implements Serializable{
     */
     private static final long serialVersionUID = 1L;
     
+    private Integer id;
+    
     private String planResultName;
     
     private Integer sumUseCase;
@@ -21,12 +23,10 @@ public class ExcResult implements Serializable{
     private List<SingleCaseDto> caseList;
     
 
-	
-
-
-	public ExcResult(String planResultName, Integer sumUseCase, Integer errUseCase, String status,
+	public ExcResult(Integer id, String planResultName, Integer sumUseCase, Integer errUseCase, String status,
 			List<SingleCaseDto> caseList) {
 		super();
+		this.id = id;
 		this.planResultName = planResultName;
 		this.sumUseCase = sumUseCase;
 		this.errUseCase = errUseCase;
@@ -39,6 +39,14 @@ public class ExcResult implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	public List<SingleCaseDto> getCaseList() {
 		return caseList;
 	}

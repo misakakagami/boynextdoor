@@ -28,6 +28,7 @@ import com.autotestplatform.dto.plan.list.PlanListDetailDto;
 import com.autotestplatform.dto.plan.list.PlanListInDto;
 import com.autotestplatform.dto.plan.list.PlanListOutDto;
 import com.autotestplatform.dto.plan.result.ExcResult;
+import com.autotestplatform.dto.plan.result.NumDto;
 import com.autotestplatform.dto.plan.result.PlanResultInDto;
 import com.autotestplatform.dto.plan.result.PlanResultOutDto;
 import com.autotestplatform.dto.plan.result.SingleCaseDto;
@@ -267,9 +268,11 @@ public class PlanService extends BaseService {
     	ExcResult excRes = null;
     	SingleCaseDto scd = null;
     	List<ExcResult> excResList = new ArrayList<ExcResult>();
+    	List<NumDto> numDtoList = new ArrayList<NumDto>();
     	//set
     	List<PlanResult> planResList = planResultDao.selectAllPlanResultList(inDto.getPlanId());
     	res.setExcNum(planResList.size());
+    	int pNo = 1;
     	for(PlanResult pr:planResList) {
     		sysLogList = sysLogDao.selectByPlanIdAndPlanResultId(inDto.getPlanId(), pr.getPlanResultId());
     		excRes = new ExcResult();
@@ -303,15 +306,25 @@ public class PlanService extends BaseService {
     			excRes.setErrUseCase(excRes.getErrUseCase() + scd.getErrExample());
     			excRes.setSumUseCase(excRes.getSumUseCase() + scd.getSumExample());
     		}
+    		excRes.setId(pNo++);
     		excRes.setCaseList(logList);
     		excResList.add(excRes);
     		historyAllResult.add(excRes.getSumUseCase());
     		historyErrResult.add(excRes.getErrUseCase());
     	}
-    	Collections.reverse(historyAllResult);
-    	Collections.reverse(historyErrResult);
-    	res.setHistoryAllResult(historyAllResult);
-    	res.setHistoryErrResult(historyErrResult);
+    	NumDto numDto = null;
+    	for(int i=0;i<historyAllResult.size();i++) {
+    		numDto = new NumDto();
+    		numDto.setId(i+1);//序号
+    		numDto.setNum1(historyAllResult.get(historyAllResult.size()-i-1));//总数
+    		numDto.setNum2(historyErrResult.get(historyAllResult.size()-i-1));//失败数
+    		numDtoList.add(numDto);
+    	}
+    	if(historyAllResult.size()==0) {
+    		historyAllResult.add(0);
+    	}
+    	res.setTopNum(new Double(Collections.max(historyAllResult)*1.1).intValue());
+    	res.setHistoryResult(numDtoList);
     	res.setResultList(excResList);
     	//return
     	return res;

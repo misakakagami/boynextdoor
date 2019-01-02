@@ -22,5 +22,4 @@ public interface SysLogMapper {
     int updateByPrimaryKey(SysLog record);
     
     List<SysLog> selectByPlanIdAndPlanResultId(@Param("planId") Integer planId,@Param("planResultId") Integer planResultId);
-
 }

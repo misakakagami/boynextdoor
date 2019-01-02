@@ -16,6 +16,10 @@
 <link rel="stylesheet" href="/css/jquery.mCustomScrollbar.min.css">
 <!-- 滚动条样式化 -->
 
+<script src="/chart/Chart.bundle.min.js"></script>
+<script src="/chart/Chart.min.js"></script>
+<script src="/chart/Chart.bundle.js"></script>
+<script src="/chart/Chart.js"></script>
 
 <script src="/assets/js/date-time/moment.min.js"></script>
 
@@ -33,6 +37,7 @@
 <link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
 <script src="/assets/js/ace-extra.min.js"></script>
 <script src="assets/js/ace-extra.min.js"></script> 
+    <script type="text/javascript" src="/chart/echarts.common.min.js"></script>
 </head>
 <#include "index-left.ftl" />
 <body>
@@ -56,13 +61,152 @@
 			
 					<div class="profile-info-value">
 					<span class="editable" id="username">
-						<#list planResultOutDto.historyAllResult as allH>
-						${allH}&nbsp;
-						</#list>
 						<br/>
-						<#list planResultOutDto.historyErrResult as errH>
-						${errH}&nbsp;
-						</#list>
+						<div id="chart" style="width:50%;height:400px;"></div>
+						 <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById("chart"));
+    var option = {
+        // 标题
+        title: {
+            text: '历史执行结果',
+            subtext: '正序显示历次执行结果'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        //图例名
+        legend: {
+            data:['执行案例总数','成功案例数','失败案例数','通过率','失败率']
+        },
+        grid: {
+            left: '3%',   //图表距边框的距离
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        //工具框，可以选择
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        //x轴信息样式
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: [<#list planResultOutDto.historyResult as n>'第${n.id}次',</#list>],
+            //坐标轴颜色
+            axisLine:{
+                lineStyle:{
+                    color:'black'
+                }
+            },
+            //x轴文字旋转
+            axisLabel:{
+                rotate:60,
+                interval:0
+            },
+        },
+
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value} 个'
+                }
+            }
+        ],
+        series: [
+            //虚线
+            {
+                name:'执行案例总数',
+                type:'line',
+                symbol:'circle',
+                symbolSize:4,   //拐点圆的大小
+                color:['blue'],  //折线条的颜色
+                data:[<#list planResultOutDto.historyResult as all>${all.num1},</#list>],
+                smooth:true,   //关键点，为true是不支持虚线的，实线就用true
+                itemStyle:{
+                    normal:{
+                        lineStyle:{
+                            width:2,
+                            type:'solid'  //'dotted'虚线 'solid'实线
+                        }
+                    }
+                }
+            },
+            {
+                name:'成功案例数',
+                type:'line',
+//                stack: '总量',
+                symbolSize:4,
+                color:['green'],
+                smooth:true,   //关键点，为true是不支持虚线的，实线就用true
+                itemStyle:{
+                    normal:{
+                        lineStyle:{
+                            width:2,
+                            type:'solid'  //'dotted'虚线 'solid'实线
+                        }
+                    }
+                },
+                data:[<#list planResultOutDto.historyResult as suc>${suc.num1-suc.num2},</#list>]
+            },
+            //实线
+            {
+                name:'失败案例数',
+                type:'line',
+                symbol:'circle',
+                symbolSize:4,
+                itemStyle:{
+                    normal:{
+                        color:'red',
+                        borderColor:'red'  //拐点边框颜色
+                    }
+                },
+                data:[<#list planResultOutDto.historyResult as fai>${fai.num2},</#list>]
+            },
+            {
+                name:'通过率',
+                type:'line',
+                symbolSize:4,
+                color:['green'],
+                smooth:false,
+                itemStyle:{
+                    normal:{
+                        lineStyle:{
+                            width:2,
+                            type:'dotted'  //'dotted'虚线 'solid'实线
+                        }
+                    }
+                },
+                data:[<#list planResultOutDto.historyResult as suc>${(suc.num1-suc.num2)/suc.num1},</#list>]
+            },
+            {
+                name:'失败率',
+                type:'line',
+                color:['red'],
+                symbol:'circle',
+                symbolSize:4,
+                smooth:false,
+                data:[<#list planResultOutDto.historyResult as fai>${fai.num2/fai.num1},</#list>],
+                itemStyle:{
+                    normal:{
+                        color:'red',
+                        borderColor:'red',
+                        lineStyle:{
+                            width:2,
+                            type:'dotted'  //'dotted'虚线 'solid'实线
+                        }
+                    }
+                }
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+    </script>
+						
 					</span>
 					</div>
 				</div>
@@ -83,14 +227,59 @@
 				<div class="profile-info-row">
 					<div class="profile-info-name"> 执行概要 </div>
 					<div class="profile-info-value">
-		        		<span>名称：${rl.planResultName!''}</span><br/>
-		        		<span>案例总数：${rl.sumUseCase}</span>&nbsp;&nbsp;&nbsp;&nbsp;
-		        		<span style="color:red">失败总数：${rl.errUseCase}</span><br/>
-		        		<span>状态<#if rl.status?? && rl.status == 'r'>
+						<div>
+			        		<span>名称：${rl.planResultName!''}</span><br/>
+			        		<span>案例总数：${rl.sumUseCase}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			        		<span style="color:red">失败总数：${rl.errUseCase}</span><br/>
+			        		<span>状态<#if rl.status?? && rl.status == 'r'>
 					                <span style="color:red">执行中</span>
 					            <#else>
 					                <span style="color:green">执行完毕</span>
 					            </#if></span>
+					    </div>
+					    <div id="chart${rl.id}" style="width:50%;height:150px;"></div>
+					   <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart${rl.id}'));
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '本次执行概况',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','未通过']
+            },
+            series : [
+                {
+                    name: '本次执行概况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:${(rl.sumUseCase-rl.errUseCase)/rl.sumUseCase}, name:'通过'},
+                        {value:${rl.errUseCase/rl.sumUseCase}, name:'未通过'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 5, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
 					</div>
 				</div>
 				
@@ -123,7 +312,51 @@
 						                <td>${cl.sumExample}</td>
 						                <td>${cl.logTime?string('YYYY-MM-dd')}</td>
 						                <td><textarea>${cl.logName}</textarea></td>
-						                <td>O</td>
+						                <td>
+					    <div id="chart${cl.logId}" style="width:280px;height:80px;"></div>
+<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chart${cl.logId}'));
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: ['通过','未通过']
+            },
+            series : [
+                {
+                    name: '案例执行情况',
+                    type: 'pie',
+                    radius : '60%',
+                    center: ['50%', '60%'],
+                    data:[
+                        {value:${(cl.sumExample-cl.errExample)/cl.sumExample}, name:'通过'},
+                        {value:${cl.errExample/cl.sumExample}, name:'未通过'}
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</td>
 						            </tr>            
 						            </tbody>
 						            </#list>
@@ -232,6 +465,6 @@
     });
 
 </script>
-
+						
   </body>
 </html>
