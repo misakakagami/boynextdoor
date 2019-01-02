@@ -14,12 +14,23 @@ import xlrd
 import redis
 import random
 import hashlib
+import urllib.request
+import datetime
+import re
+import xmltodict
+from sqlalchemy.util.langhelpers import NoneType
+import chardet
 
 class CaseBase:
     __caseCount = 0
     __successCount = 0
     __faildCount = 0
-
+    __faildCasesId = []
+    key = ""
+    listKey = ""
+    compareResult = True
+    compareResultList = []
+    compareResultDict = []
     # 数据库链接游标，用于数据库操作。
     __cursor = 0
     __db = None
@@ -124,6 +135,7 @@ class CaseBase:
     @staticmethod
     def _addFaild(caseid, message, code):
         CaseBase.__faildCount += 1
+        CaseBase.__faildCasesId.append(caseid)
         logging.error("***************case " + caseid + " faild******************")
         logging.error("error code: " + str(code))
         logging.error("error message: " + message)
@@ -131,37 +143,64 @@ class CaseBase:
         logging.error("***************case " + caseid + " faild******************\n")
 
 
+#     @staticmethod
+#     def printTestResult():
+#         logging.info('****************test end**********************')
+#         logging.info('case count: ' + str(CaseBase.__caseCount) + ', success count: ' + str(
+#             CaseBase.__successCount) + ', faild count: ' + str(CaseBase.__faildCount))
+#         logging.info('**********************************************')
+#         CaseBase.__db.rollback()
+#         CaseBase.__db.cursor().close()
+#         # 关闭数据库连接
+#         CaseBase.__db.close()
+#         # todo 向测试系统上报测试结果
+#         if CaseBase.__faildCount != 0:
+#             sys.exit(-1)
+#         sys.exit(0)
+
     @staticmethod
     def printTestResult():
         logging.info('****************test end**********************')
         logging.info('case count: ' + str(CaseBase.__caseCount) + ', success count: ' + str(
             CaseBase.__successCount) + ', faild count: ' + str(CaseBase.__faildCount))
-        logging.info('**********************************************')
+        if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+            logging.info("faild count id:" + str(CaseBase.__faildCasesId))
         CaseBase.__db.rollback()
         CaseBase.__db.cursor().close()
         # 关闭数据库连接
         CaseBase.__db.close()
         # todo 向测试系统上报测试结果
-        if CaseBase.__faildCount != 0:
-            sys.exit(-1)
-        sys.exit(0)
-
+        try:
+            if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+                sys.exit(-1)
+            sys.exit(0)
+        finally:
+            logging.info('**********************************************')
+            if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+                return [False, CaseBase.__faildCasesId]
+            return True
 
     @staticmethod
     def printTestResultByCommit():
         logging.info('****************test end**********************')
         logging.info('case count: ' + str(CaseBase.__caseCount) + ', success count: ' + str(
             CaseBase.__successCount) + ', faild count: ' + str(CaseBase.__faildCount))
-        logging.info('**********************************************')
+        if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+            logging.info("faild count id:" + str(CaseBase.__faildCasesId))
         CaseBase.__db.commit()
         CaseBase.__db.cursor().close()
         # 关闭数据库连接
         CaseBase.__db.close()
         # todo 向测试系统上报测试结果
-        if CaseBase.__faildCount != 0:
-            sys.exit(-1)
-        sys.exit(0)
-
+        try:
+            if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+                sys.exit(-1)
+            sys.exit(0)
+        finally:
+            logging.info('**********************************************')
+            if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+                return [False, CaseBase.__faildCasesId]
+            return True
 
     @staticmethod
     def checkInterfaseHead(result):
@@ -363,3 +402,215 @@ class CaseBase:
             else:
                 return int(numList[0])
     
+    # webservice接口测试
+    @staticmethod
+    def webServiceInteTest(request_url, paramData):
+        postcontent = '<?xml version="1.0" encoding="utf-8"?>'
+        postcontent += paramData
+        req = urllib.request.Request('http://' + CaseBase.__config.apihost + request_url,data=postcontent.encode('GBK'),headers={'Content-Type': 'text/xml'})
+        rsp = urllib.request.urlopen(req)
+        resList = rsp.readlines()
+        resStr = ""
+        for row in resList:
+            try:
+                rs = row.decode()
+            except:
+                #解码出错时找到对应编码格式进行解码    
+                rs = row.decode(chardet.detect(row)['encoding'])
+            rs = rs.replace("&lt;", "<")
+            #汉子转码解析             
+            rs = re.sub(r'&#x....;', lambda match: CaseBase.convert(match.group()),rs)
+            resStr += rs
+        return resStr
+    
+    @staticmethod
+    def convert(s):
+        s = s.strip('&#x;')
+        #转成ascii bytes         
+        s = bytes(r'\u' + s, 'ascii')
+        return s.decode('unicode_escape')
+    
+    #===========================================================================
+    # 生成14位时间戳与随机数混合数字字符
+    #===========================================================================
+    @staticmethod
+    def generateRandom():
+        nowTime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        result = nowTime[5:] + str(random.randint(10000,99999))
+        return result
+    
+    
+    #===========================================================================
+    # 定义xml转dict的函数  
+    #===========================================================================
+    @staticmethod
+    def xmlToJson(xmlstr):  
+        xmlParse = xmltodict.parse(xmlstr)  
+        jsonStr = json.dumps(xmlParse,indent=1)
+        jsonStr = json.loads(jsonStr)
+        return jsonStr
+    
+    
+    #===========================================================================
+    # 对比两个dict【以dict1为准】,返回结果为(最终对比结果,各节点的对比结果组装成的list),
+    # list的元素为dictkey和对比结果的信息。例如：[{"key":True/False}]
+    # 当前方法元素为dict,当dict内value为列表时不要求顺序
+    # 如:{"a":[1,4,7]}与{"a":[4,1,7]}最后对比结果为True
+    #===========================================================================
+    @staticmethod
+    def compareDict(dict1, dict2):
+        if not CaseBase.isMatch(type(dict1), type(dict2)):
+            return False, [{"对比结果:":"接口与脚本结果类型不一致"}]
+        if not (isinstance(dict1, (dict, NoneType)) and isinstance(dict2, (dict, NoneType))):
+            return False, [{"对比结果:":"传入类型不为dict"}]
+        if not dict1:
+            dict1 = {"传入空值时特殊处理":"NoneType"}
+        if not dict2:
+            dict2 = {"传入空值时特殊处理":"NoneType"}
+        result = True
+        compareResultList = []
+        for k1,v1 in dict1.items():
+            resultInfo = None
+            ifHasThisKey = None
+            for k2,v2 in dict2.items():
+                if k1 == k2:
+                    # 目前无法处理list形式如["a",{"b":1}]形式的,此种情况无法对list进行排序
+                    # [非要支持此种验证还要加两层循环]，另外中台目前所有接口没有这种形式的，列表内全为映射数据
+                    key = "Test"
+                    if isinstance(v1, list):
+                        if v1:
+                            # list中元素为dict
+                            if isinstance(v1[0], dict):
+                                
+                                for k,v in v1[0].items():
+                                    key = k
+                                    break
+                                v1.sort(key = lambda k: (k.get(key, 0)))
+                            else:
+                                v1.sort()
+                    if isinstance(v2, list):
+                        if v2 and not CaseBase.isMatch(key, "Test"):
+                            if isinstance(v2[0], dict):
+                                v2.sort(key = lambda k: (k.get(key, 0)))
+                            else:
+                                v2.sort()
+                    resultInfo = {"%s" % k1: v1 == v2}
+                    compareResultList.append(resultInfo)
+                    break
+            # 是否有此键
+            for compareResult in compareResultList:
+                ifHasThisKey = compareResult.__contains__("%s" % k1)
+                if ifHasThisKey:
+                    break
+            if not ifHasThisKey:
+                resultInfo = {"%s" % k1: False}
+                compareResultList.append(resultInfo)
+            if not resultInfo["%s" % k1]:
+                result = False
+        return result, compareResultList
+    
+    
+    #===========================================================================
+    # 获取带有绝对路径的文件名
+    #===========================================================================
+    @staticmethod
+    def getAbsolutePathFileName(fileName):
+        pathHead = os.getcwd()
+        if "\\" in pathHead:
+            pathHead = pathHead[:os.getcwd().rfind("\\")]
+        else:
+            pathHead = pathHead[:os.getcwd().rfind("/")]
+        fileName = (pathHead + fileName).replace("\\", "/")
+        return fileName
+    
+    
+    #===========================================================================
+    # json格式数据对比,以dict1为准，对比dict2（dict1与dict2可以为任何类型）,
+    # 第三个参数为是否关心取值[如1，与'1']，第四个参数为是否关心列表顺序,
+    # 第五个参数为是否需要对列表再次排序
+    #===========================================================================
+    @staticmethod
+    def compareDictOrList(dict1, dict2, ifCareValue = False, ifCareSequence = False, ifOrder = False):
+        compareResultList = []
+        if isinstance(dict1, dict):
+            if isinstance(dict2, dict): 
+                for key in dict1:
+                    CaseBase.key = key
+                    if dict2.__contains__(key):
+                        CaseBase.compareDictOrList(dict1[key], dict2[key])
+                    else:
+                        CaseBase.compareResult = False
+                        resultInfo = {key: False}
+                        CaseBase.compareResultList.append(resultInfo)
+                return CaseBase.compareResult, CaseBase.compareResultList
+            else:
+                CaseBase.compareResult = False
+                resultInfo = {CaseBase.key: False}
+                CaseBase.compareResultList.append(resultInfo)
+                return CaseBase.compareResult, CaseBase.compareResultList
+        elif isinstance(dict1, list):
+            CaseBase.listKey = CaseBase.key
+            if isinstance(dict2, list):
+                if not ifCareSequence:
+                    if ifOrder:
+                        try:
+                            for k1, v1 in dict1[0].items():
+                                dict1.sort(key = lambda k: (k.get(k1, "None")))
+                                break
+                        except:
+                            dict1.sort()
+                        try:
+                            dict2.sort(key = lambda k: (k.get(k1, "None")))
+                        except:
+                            dict2.sort()
+            else:
+                resultInfo = {CaseBase.listKey : False}
+                CaseBase.compareResult = False
+                CaseBase.compareResultList.append(resultInfo)
+                return CaseBase.compareResult, CaseBase.compareResultList
+            if len(dict1) == len(dict2):
+                for index in range(len(dict1)):
+                    CaseBase.compareDictOrList(dict1[index], dict2[index])
+                    compareResultList = CaseBase.compareResultList[-len(dict1[index]):]
+                    CaseBase.compareResultList = CaseBase.compareResultList[:-len(dict1[index])]
+                    CaseBase.compareResultList.append(compareResultList)
+                compareResultList = CaseBase.compareResultList[-len(dict1):]
+                CaseBase.compareResultList = CaseBase.compareResultList[:-len(dict1)]
+                CaseBase.compareResultList.append(compareResultList)
+            else:
+                CaseBase.compareResult = False
+                if CaseBase.listKey:
+                    resultInfo = {"%s" % CaseBase.listKey: False}
+                else:
+                    resultInfo = {"列表长度不一致" : False}
+                CaseBase.compareResultList.append(resultInfo)
+            return CaseBase.compareResult, CaseBase.compareResultList
+        else:
+            result = dict1 == dict2
+            if not result:
+                if not ifCareValue:
+                    try:
+                        dict1 = str(dict1).rstrip('0')
+                        dict2 = str(dict2).rstrip('0')
+                    except:
+                        pass
+                    result = dict1 == dict2
+            if not result:
+                CaseBase.compareResult = False
+            resultInfo = {CaseBase.key: result}
+            CaseBase.compareResultList.append(resultInfo)
+            return CaseBase.compareResult, CaseBase.compareResultList
+    
+    
+    #===========================================================================
+    # json格式dict节点值为空时去掉节点，第二个参数为是否保留值为list的节点
+    #===========================================================================
+    @staticmethod
+    def deleteJsonNonePoint(Key, ifSaveNoneListPoint = True):
+        for key in list(Key.keys()):
+            if ifSaveNoneListPoint:
+                if isinstance(Key[key], list):
+                    continue
+            if not Key[key]:
+                Key.pop(key)
+

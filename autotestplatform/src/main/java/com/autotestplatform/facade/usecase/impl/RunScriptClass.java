@@ -3,6 +3,7 @@ package com.autotestplatform.facade.usecase.impl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 import org.slf4j.Logger;
@@ -40,7 +41,12 @@ public abstract class RunScriptClass {
             new Thread() {
                 @Override
                 public void run() {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+                    BufferedReader in = null;
+                    try {
+                        in = new BufferedReader(new InputStreamReader(process.getInputStream(), "UTF-8"));
+                    } catch (UnsupportedEncodingException e1) {
+                        e1.printStackTrace();
+                    }
                     String str = null;
                     try {
                         while ((str = in.readLine()) != null) {
@@ -64,7 +70,12 @@ public abstract class RunScriptClass {
             new Thread() {
                 @Override
                 public void run() {
-                    BufferedReader err = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+                    BufferedReader err = null;
+                    try {
+                        err = new BufferedReader(new InputStreamReader(process.getErrorStream(), "UTF-8"));
+                    } catch (UnsupportedEncodingException e1) {
+                        e1.printStackTrace();
+                    }
                     try {
                         while (err.readLine() != null) {
                             //                            System.out.println("err: " + line);
