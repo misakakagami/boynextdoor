@@ -119,57 +119,63 @@ public class FileUtils {
         File f = new File(path);
         f.deleteOnExit();
     }
-    
+
     /**
      * 读取txt
      * @param url
      * @return 失败数-总数-失败案例的用例号+++测试点
      */
     public static String readTxt(String url) {
-    	File f = new File(url);
-    	StringBuffer sb = new StringBuffer("");
-    	StringBuffer fai = new StringBuffer("");
-    	try {
-			if(f.isFile() && f.exists()) {
-				InputStreamReader isr = new InputStreamReader(new FileInputStream(f),"utf-8");
-				BufferedReader br = new BufferedReader(isr);
-				String tempStr = null;
-				String pointStr = null;
-				while((tempStr = br.readLine()) != null) {
-					try {
-						if(tempStr.contains("测试点:")) {
-							pointStr = tempStr.substring(tempStr.indexOf("测试点:")+4);
-						}
-						if(tempStr.contains("error message: ")) {
-							tempStr = br.readLine();
-							if(tempStr.contains(" faild*****")) {
-								fai.append("+++").append(tempStr.substring(tempStr.indexOf("***case")+7, tempStr.indexOf("faild***")))
-									.append(":").append(pointStr);
-							}
-						}
-						if(tempStr.contains("case count:")) {
-							sb.append(tempStr.substring(tempStr.indexOf("faild count:")+12)).append("-")
-								.append(tempStr.substring(tempStr.indexOf("case count: ")+11,tempStr.indexOf(", success count:")));
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				br.close();
-				isr.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	if(sb.length()<2) {
-    		sb.append("0-0-执行出错");
-    		fai.append("+++");
-    	}
-    	if(fai.length()<2) {
-    		fai.append("无");
-    	}
-    	return sb.append("-").append(fai).toString();
+        File f = new File(url);
+        StringBuffer sb = new StringBuffer("");
+        StringBuffer fai = new StringBuffer("");
+        try {
+            if (f.isFile() && f.exists()) {
+                InputStreamReader isr = new InputStreamReader(new FileInputStream(f), "utf-8");
+                BufferedReader br = new BufferedReader(isr);
+                String tempStr = null;
+                String pointStr = null;
+                //errorstatus与casesatue为处理日志输出多次统计结果特殊处理                
+                Boolean errorstatus = false;
+                Boolean casesatue = false;
+                while ((tempStr = br.readLine()) != null) {
+                    try {
+                        if (tempStr.contains("测试点:")) {
+                            pointStr = tempStr.substring(tempStr.indexOf("测试点:") + 4);
+                        }
+                        if (tempStr.contains("error message: ") && errorstatus == false) {
+                            tempStr = br.readLine();
+                            if (tempStr.contains(" faild*****")) {
+                                fai.append("+++").append(
+                                        tempStr.substring(tempStr.indexOf("***case") + 7, tempStr.indexOf("faild***")))
+                                        .append(":").append(pointStr);
+                                errorstatus = true;
+                            }
+                        }
+                        if (tempStr.contains("case count:") && casesatue == false) {
+                            sb.append(tempStr.substring(tempStr.indexOf("faild count:") + 12)).append("-")
+                                    .append(tempStr.substring(tempStr.indexOf("case count: ") + 11,
+                                            tempStr.indexOf(", success count:")));
+                            casesatue = true;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                br.close();
+                isr.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (sb.length() < 2) {
+            sb.append("0-0-执行出错");
+            fai.append("+++");
+        }
+        if (fai.length() < 2) {
+            fai.append("无");
+        }
+        return sb.append("-").append(fai).toString();
     }
-    
-    
+
 }

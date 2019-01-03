@@ -54,7 +54,8 @@ class CaseBase:
         print("log_file", log_file)
         log_format = '[%(asctime)s] [%(levelname)s] %(message)s'
         logging.basicConfig(format=log_format, filename=log_file, filemode='w', level=logging.DEBUG)
-        console = logging.StreamHandler()
+#         console = logging.StreamHandler()
+        console = logging.FileHandler(log_file, encoding='utf-8')
         console.setLevel(logging.DEBUG)
         formatter = logging.Formatter(log_format)
         console.setFormatter(formatter)
@@ -142,22 +143,6 @@ class CaseBase:
         # todo 在这个位置增加上报操作，把结果上报给自动测试系统
         logging.error("***************case " + caseid + " faild******************\n")
 
-
-#     @staticmethod
-#     def printTestResult():
-#         logging.info('****************test end**********************')
-#         logging.info('case count: ' + str(CaseBase.__caseCount) + ', success count: ' + str(
-#             CaseBase.__successCount) + ', faild count: ' + str(CaseBase.__faildCount))
-#         logging.info('**********************************************')
-#         CaseBase.__db.rollback()
-#         CaseBase.__db.cursor().close()
-#         # 关闭数据库连接
-#         CaseBase.__db.close()
-#         # todo 向测试系统上报测试结果
-#         if CaseBase.__faildCount != 0:
-#             sys.exit(-1)
-#         sys.exit(0)
-
     @staticmethod
     def printTestResult():
         logging.info('****************test end**********************')
@@ -180,27 +165,27 @@ class CaseBase:
                 return [False, CaseBase.__faildCasesId]
             return True
 
-    @staticmethod
-    def printTestResultByCommit():
-        logging.info('****************test end**********************')
-        logging.info('case count: ' + str(CaseBase.__caseCount) + ', success count: ' + str(
-            CaseBase.__successCount) + ', faild count: ' + str(CaseBase.__faildCount))
-        if not CaseBase.isMatch(CaseBase.__faildCount, 0):
-            logging.info("faild count id:" + str(CaseBase.__faildCasesId))
-        CaseBase.__db.commit()
-        CaseBase.__db.cursor().close()
-        # 关闭数据库连接
-        CaseBase.__db.close()
-        # todo 向测试系统上报测试结果
-        try:
-            if not CaseBase.isMatch(CaseBase.__faildCount, 0):
-                sys.exit(-1)
-            sys.exit(0)
-        finally:
-            logging.info('**********************************************')
-            if not CaseBase.isMatch(CaseBase.__faildCount, 0):
-                return [False, CaseBase.__faildCasesId]
-            return True
+#     @staticmethod
+#     def printTestResultByCommit():
+#         logging.info('****************test end**********************')
+#         logging.info('case count: ' + str(CaseBase.__caseCount) + ', success count: ' + str(
+#             CaseBase.__successCount) + ', faild count: ' + str(CaseBase.__faildCount))
+#         if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+#             logging.info("faild count id:" + str(CaseBase.__faildCasesId))
+#         CaseBase.__db.commit()
+#         CaseBase.__db.cursor().close()
+#         # 关闭数据库连接
+#         CaseBase.__db.close()
+#         # todo 向测试系统上报测试结果
+#         try:
+#             if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+#                 sys.exit(-1)
+#             sys.exit(0)
+#         finally:
+#             logging.info('**********************************************')
+#             if not CaseBase.isMatch(CaseBase.__faildCount, 0):
+#                 return [False, CaseBase.__faildCasesId]
+#             return True
 
     @staticmethod
     def checkInterfaseHead(result):

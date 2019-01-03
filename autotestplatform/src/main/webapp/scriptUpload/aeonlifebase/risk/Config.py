@@ -11,7 +11,7 @@ class Config:
     #sit
 #     apihost = '10.10.20.114:8103'
     #uat
-    apihost = '10.10.109.81:8103'
+    apihost = '10.2.8.26:8888'
 #     apihost = '10.10.105.80:8103'
 #     apihost = '10.2.2.28:8103'
     #dev

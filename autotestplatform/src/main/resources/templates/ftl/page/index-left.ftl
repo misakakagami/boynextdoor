@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
-    <title>自动化测试管理平台</title>
+    <title>研发一体化平台</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,7 +48,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							自动化测试管理平台
+							研发一体化管理平台
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
@@ -115,7 +115,7 @@
 						<li class="active">
 							<a href="autoTest.jsp" class="dropdown-toggle">
 								<i class="icon-desktop"></i>
-								<span class="menu-text"> 自动化测试平台 </span>
+								<span class="menu-text"> 研发一体化平台 </span>
 
 								<b class="arrow icon-angle-down"></b>
 							</a>
